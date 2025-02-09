@@ -7,7 +7,7 @@ const Footer = () => {
     const [copiedEmail, setCopiedEmail] = useState(false);
     const [copiedPhone, setCopiedPhone] = useState(false);
 
-    const copyToClipboard = async (text, type) => {
+    const copyToClipboard = async (text:any, type:any) => {
         try {
             await navigator.clipboard.writeText(text);
             if (type === 'email') {
