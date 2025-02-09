@@ -1,15 +1,31 @@
 "use client";
-import { Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Phone, Copy, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
 
 const Footer = () => {
-    return (
-        <footer className="bg-black/80 py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Grid: single column on mobile, three columns on md+ */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left justify-items-center md:justify-items-start">
+    const [copiedEmail, setCopiedEmail] = useState(false);
+    const [copiedPhone, setCopiedPhone] = useState(false);
 
+    const copyToClipboard = async (text, type) => {
+        try {
+            await navigator.clipboard.writeText(text);
+            if (type === 'email') {
+                setCopiedEmail(true);
+                setTimeout(() => setCopiedEmail(false), 2000);
+            } else {
+                setCopiedPhone(true);
+                setTimeout(() => setCopiedPhone(false), 2000);
+            }
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    };
+
+    return (
+        <footer className="py-12">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left justify-items-center md:justify-items-start">
                     {/* PAGES */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -19,11 +35,11 @@ const Footer = () => {
                     >
                         <h3 className="font-mono text-blue-400 mb-4">Pages</h3>
                         <ul className="space-y-2 text-gray-300">
-                            <li>AI Voicebots</li>
-                            <li>AI Chatbots</li>
-                            <li>AI Agents</li>
-                            <li>Smart Software Development</li>
-                            <li>Automations</li>
+                            {['AI Voicebots', 'AI Chatbots', 'AI Agents', 'Smart Software Development', 'Automations'].map((item) => (
+                                <li key={item} className="hover:text-blue-400 transition-colors cursor-pointer">
+                                    {item}
+                                </li>
+                            ))}
                         </ul>
                     </motion.div>
 
@@ -36,13 +52,29 @@ const Footer = () => {
                     >
                         <h3 className="font-mono text-blue-400 mb-4">Contact</h3>
                         <ul className="space-y-2 text-gray-300">
-                            <li className="flex items-center space-x-2 justify-center md:justify-start">
-                                <Mail className="w-4 h-4" />
-                                <span>david@novagate-solutions.com</span>
+                            <li 
+                                className="flex items-center space-x-2 justify-center md:justify-start group cursor-pointer"
+                                onClick={() => copyToClipboard('david@novagate-solutions.com', 'email')}
+                            >
+                                <Mail className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                                <span className="group-hover:text-blue-400 transition-colors">david@novagate-solutions.com</span>
+                                {copiedEmail ? (
+                                    <Check className="w-4 h-4 text-green-500" />
+                                ) : (
+                                    <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                )}
                             </li>
-                            <li className="flex items-center space-x-2 justify-center md:justify-start">
-                                <Phone className="w-4 h-4" />
-                                <span>+45 71 62 63 79</span>
+                            <li 
+                                className="flex items-center space-x-2 justify-center md:justify-start group cursor-pointer"
+                                onClick={() => copyToClipboard('+45 71 62 63 79', 'phone')}
+                            >
+                                <Phone className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                                <span className="group-hover:text-blue-400 transition-colors">+45 71 62 63 79</span>
+                                {copiedPhone ? (
+                                    <Check className="w-4 h-4 text-green-500" />
+                                ) : (
+                                    <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                )}
                             </li>
                         </ul>
                     </motion.div>
@@ -55,19 +87,17 @@ const Footer = () => {
                         transition={{ duration: 0.5, delay: 0.4 }}
                     >
                         <h3 className="font-mono text-blue-400 mb-4">Network</h3>
-                        {/* Center icons on mobile, left on md+ */}
                         <div className="flex space-x-4 justify-center md:justify-start">
-                            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
+                            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
                                 <Instagram className="w-6 h-6" />
                             </a>
-                            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors">
+                            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
                                 <Linkedin className="w-6 h-6" />
                             </a>
                         </div>
                     </motion.div>
                 </div>
 
-                {/* Separator Line */}
                 <motion.div
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
@@ -75,7 +105,6 @@ const Footer = () => {
                     className="mt-8 mb-6 border-t border-gray-700"
                 />
 
-                {/* Footer Text */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -83,9 +112,7 @@ const Footer = () => {
                     transition={{ duration: 0.5, delay: 0.8 }}
                     className="mt-8 text-center text-gray-400 text-sm"
                 >
-                    <div className="mt-8 text-center text-gray-400 text-sm">
-                        <p>© 2025 NovaGate Solutions. All rights reserved.</p>
-                    </div>
+                    <p>© 2025 NovaGate Solutions. All rights reserved.</p>
                 </motion.div>
             </div>
         </footer>

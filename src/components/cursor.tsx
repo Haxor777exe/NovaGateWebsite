@@ -11,7 +11,7 @@ const MatrixCursor = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
 
@@ -27,17 +27,23 @@ const MatrixCursor = () => {
 
       const updatePosition = () => {
         setPosition(prev => {
-          const newX = prev.x + (targetX - prev.x) * 0.2;
-          const newY = prev.y + (targetY - prev.y) * 0.2;
-          
+          // Reduced easing factor from 0.2 to 0.08 for slower movement
+          const newX = prev.x + (targetX - prev.x) * 0.08;
+          const newY = prev.y + (targetY - prev.y) * 0.08;
+
           setTrail(prevTrail => {
-            const newTrail = [{ x: newX, y: newY }, ...prevTrail.slice(0, 5)];
-            return newTrail;
+            // Added delay between trail elements by only updating every 2nd frame
+            if (prevTrail.length === 0 || 
+                Math.abs(prevTrail[0].x - newX) > 5 || 
+                Math.abs(prevTrail[0].y - newY) > 5) {
+              return [{ x: newX, y: newY }, ...prevTrail.slice(0, 7)];
+            }
+            return prevTrail;
           });
 
           return { x: newX, y: newY };
         });
-        
+
         frameId = requestAnimationFrame(updatePosition);
       };
 
@@ -62,32 +68,32 @@ const MatrixCursor = () => {
         className="absolute"
         style={{
           transform: `translate(${position.x}px, ${position.y}px)`,
-          transition: 'transform 0.1s cubic-bezier(0.16, 1, 0.3, 1)'
+          transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1)' // Increased transition duration
         }}
       >
         <div className="relative transform -translate-x-1/2 -translate-y-1/2">
-          <Terminal 
-            className="text-blue-500" 
+          <Terminal
+            className="text-blue-500"
             size={30}
             strokeWidth={1.5}
           />
         </div>
       </div>
 
-      {/* Simple trail */}
+      {/* Trail with longer fade */}
       {trail.map((pos, i) => (
         <div
           key={i}
           className="absolute"
           style={{
             transform: `translate(${pos.x}px, ${pos.y}px)`,
-            opacity: 0.2 - (i * 0.03),
-            transition: 'all 0.1s cubic-bezier(0.16, 1, 0.3, 1)'
+            opacity: 0.3 - (i * 0.04), // Adjusted opacity for longer fade
+            transition: 'all 0.15s cubic-bezier(0.16, 1, 0.3, 1)' // Increased transition duration
           }}
         >
-          <Terminal 
-            className="text-blue-400 transform -translate-x-1/2 -translate-y-1/2" 
-            size={20 - (i * 2)}
+          <Terminal
+            className="text-blue-400 transform -translate-x-1/2 -translate-y-1/2"
+            size={24 - (i * 2)} // Slightly larger trail elements
             strokeWidth={1.5}
           />
         </div>
