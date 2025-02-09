@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import CursorGlow from "@/components/cursor";
+import CyberCursor from "@/components/cursor";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +34,7 @@ export default function RootLayout({
         <Navbar />
         <div className="relative z-10">
           {children}
+          <CyberCursor />
         </div>
         <Footer />
       </body>
