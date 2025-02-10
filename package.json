@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vapi-ai/web": "^2.2.2",
     "framer-motion": "^12.4.1",
     "ionicons": "^7.4.0",
     "lucide-react": "^0.475.0",
