@@ -23,17 +23,6 @@ export default function Voicebots() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Setup event handlers
-        vapi.on('call-start', () => {
-            setCallStatus('connected');
-            setIsCallActive(true);
-        });
-
-        vapi.on('call-end', () => {
-            setCallStatus('disconnected');
-            setIsCallActive(false);
-        });
-
         return () => {
             vapi.off('call-start', () => {
                 setCallStatus('connected');
@@ -126,17 +115,17 @@ export default function Voicebots() {
                 </div>
             </section>
 
-            <section className="pt-20">
-                <div className="max-w-4xl mx-auto p-8 rounded-2xl border border-blue-500/20 shadow-2xl shadow-blue-500/30">
+            <section className="pt-12 md:pt-20">
+                <div className="max-w-4xl mx-auto p-4 md:p-8">
                     {/* Explanation Section */}
-                    <div className="mb-12 space-y-6">
-                        <h2 className="text-3xl font-bold text-blue-400 mb-6 relative">
+                    <div className="mb-8 md:mb-12 space-y-4 md:space-y-6">
+                        <h2 className="text-2xl md:text-3xl font-bold text-blue-400 mb-4 md:mb-6 relative">
                             AI Voice Interaction System
-                            <span className="absolute bottom-0 left-0 w-24 h-1 bg-blue-500/50"></span>
+                            <span className="absolute bottom-0 left-0 w-16 md:w-24 h-1 bg-blue-500/50"></span>
                         </h2>
 
-                        <div className="space-y-4">
-                            <p className="text-gray-300 text-lg leading-relaxed">
+                        <div className="space-y-3 md:space-y-4">
+                            <p className="text-gray-300 text-base md:text-lg leading-relaxed">
                                 <span className="text-blue-400 font-semibold">What is it?</span><br />
                                 Our AI Voicebots are neural networks that engage in natural, human-like dialogue.
                                 Using advanced speech recognition and deep learning, they comprehend context,
@@ -144,23 +133,23 @@ export default function Voicebots() {
                                 customer interactions through voice-first AI solutions.
                             </p>
 
-                            <div className="border-l-4 border-blue-500/30 pl-4 ml-2 mt-6">
-                                <h3 className="text-blue-400 text-xl font-semibold mb-3">Core Capabilities:</h3>
-                                <ul className="space-y-3 text-gray-300">
-                                    <li className="flex items-center gap-3">
-                                        <svg className="flex-shrink-0 w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <div className="border-l-4 border-blue-500/30 pl-3 md:pl-4 ml-1 md:ml-2 mt-4 md:mt-6">
+                                <h3 className="text-blue-400 text-lg md:text-xl font-semibold mb-2 md:mb-3">Core Capabilities:</h3>
+                                <ul className="space-y-2 md:space-y-3 text-gray-300">
+                                    <li className="flex items-center gap-2 md:gap-3">
+                                        <svg className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                                         </svg>
                                         Real-time speech synthesis & analysis
                                     </li>
-                                    <li className="flex items-center gap-3">
-                                        <svg className="flex-shrink-0 w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <li className="flex items-center gap-2 md:gap-3">
+                                        <svg className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                                         </svg>
                                         Contextual conversation memory
                                     </li>
-                                    <li className="flex items-center gap-3">
-                                        <svg className="flex-shrink-0 w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <li className="flex items-center gap-2 md:gap-3">
+                                        <svg className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                                         </svg>
                                         Multi-platform API integration
@@ -171,23 +160,22 @@ export default function Voicebots() {
                     </div>
 
                     {/* Interactive Demo Section */}
-                    <div className="bg-black/40 p-6 rounded-xl border border-blue-500/20">
-                        <h3 className="text-blue-400 text-xl font-bold mb-6">
+                    <div className="bg-black/40 p-4 md:p-6 rounded-lg md:rounded-xl border border-blue-500/20">
+                        <h3 className="text-blue-400 text-lg md:text-xl font-bold mb-4 md:mb-6">
                             <span className="border-b-2 border-blue-500/40 pb-1">Experience Next-Gen Voice AI</span>
                         </h3>
 
-                        {/* Original VoiceBot component UI */}
-                        <div className="space-y-4">
-                            {error && <div className="text-red-400 mb-4 text-sm">{error}</div>}
+                        <div className="space-y-3 md:space-y-4">
+                            {error && <div className="text-red-400 mb-3 md:mb-4 text-xs md:text-sm">{error}</div>}
 
-                            <div className="flex items-center gap-4">
+                            <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
                                 <button
                                     onClick={isCallActive ? stopCall : startCall}
-                                    className={`px-8 py-3 rounded-xl border transition-all
-                ${isCallActive
+                                    className={`w-full md:w-auto px-6 py-2 md:px-8 md:py-3 rounded-lg md:rounded-xl border transition-all
+                            ${isCallActive
                                             ? 'bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border-blue-500/30'
                                             : 'bg-black/40 hover:bg-blue-500/10 text-gray-300 border-blue-500/20'}
-                hover:shadow-lg hover:shadow-blue-500/20`}
+                            hover:shadow-lg hover:shadow-blue-500/20 text-sm md:text-base`}
                                 >
                                     {callStatus === 'connecting' ? 'Initializing Neural Link...' :
                                         isCallActive ? 'Terminate Connection' : 'Initiate Voice Protocol'}
@@ -195,13 +183,13 @@ export default function Voicebots() {
 
                                 <div className="flex items-center gap-2">
                                     <div className={`h-3 w-3 rounded-full ${isCallActive ? 'animate-pulse bg-green-500' : 'bg-red-500'}`} />
-                                    <span className="text-gray-400 text-sm font-mono">
+                                    <span className="text-gray-400 text-xs md:text-sm font-mono">
                                         SYSTEM STATUS: {callStatus.toUpperCase()}
                                     </span>
                                 </div>
                             </div>
 
-                            <p className="text-gray-400 text-sm italic mt-4">
+                            <p className="text-gray-400 text-xs md:text-sm italic mt-3 md:mt-4">
                                 {isCallActive
                                     ? ">> Voice channel active - Engage in natural conversation..."
                                     : "Ready for voice interface activation"}
