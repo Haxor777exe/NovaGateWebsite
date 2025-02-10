@@ -177,14 +177,14 @@ export default function Navbar() {
           ))}
 
           {/* Mobile Let's Chat button */}
-          <Link
-            href="#"
-            className="mt-8 px-6 py-3 font-bold text-white rounded-md bg-[#1a64c4] shadow-[0_0_5px_#1a64c4] hover:shadow-[0_0_10px_#1a64c4] transition-shadow duration-300"
-            style={{ textDecoration: "none" }}
-            onClick={() => setMenuOpen(false)}
-          >
-            Let's Chat
-          </Link>
+          <button className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+              shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden">
+              <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
+                Let's Chat
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
+            </button>
         </div>
       </div>
 
