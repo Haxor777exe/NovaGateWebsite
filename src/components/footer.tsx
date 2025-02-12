@@ -2,10 +2,13 @@
 import { Instagram, Linkedin, Mail, Phone, Copy, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+
 
 const Footer = () => {
     const [copiedEmail, setCopiedEmail] = useState(false);
     const [copiedPhone, setCopiedPhone] = useState(false);
+      const t = useTranslations('common');
 
     const copyToClipboard = async (text:any, type:any) => {
         try {
@@ -33,9 +36,9 @@ const Footer = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        <h3 className="font-mono text-blue-400 mb-4">Pages</h3>
+                        <h3 className="font-mono text-blue-400 mb-4"> {t('Pages')}</h3>
                         <ul className="space-y-2 text-gray-300">
-                            {['AI Voicebots', 'AI Chatbots', 'AI Agents', 'Smart Software Development', 'Automations'].map((item) => (
+                            {[ t('AI Voicebots'), t('AI Chatbots'), t('AI Agents'), t('Smart Software Development'), t('Automations')].map((item) => (
                                 <li key={item} className="hover:text-blue-400 transition-colors cursor-pointer">
                                     {item}
                                 </li>
@@ -50,7 +53,7 @@ const Footer = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        <h3 className="font-mono text-blue-400 mb-4">Contact</h3>
+                        <h3 className="font-mono text-blue-400 mb-4"> {t('Contact')}</h3>
                         <ul className="space-y-2 text-gray-300">
                             <li 
                                 className="flex items-center space-x-2 justify-center md:justify-start group cursor-pointer"
@@ -86,7 +89,7 @@ const Footer = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                     >
-                        <h3 className="font-mono text-blue-400 mb-4">Network</h3>
+                        <h3 className="font-mono text-blue-400 mb-4"> {t('Network')}</h3>
                         <div className="flex space-x-4 justify-center md:justify-start">
                             <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
                                 <Instagram className="w-6 h-6" />

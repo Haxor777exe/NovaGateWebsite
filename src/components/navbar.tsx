@@ -1,25 +1,44 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("EN");
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations('common');
+  const router = useRouter();
 
   const handleLanguageSelect = (lang: string) => {
     setSelectedLanguage(lang);
     setLanguageMenuOpen(false);
-  };
 
+    // Set the cookie with an expiration date (e.g., 1 year)
+    document.cookie = `locale=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    router.refresh();
+};
+
+
+  useEffect(() => {
+    const storedLocale = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('locale='))
+      ?.split('=')[1];
+  
+    setSelectedLanguage(storedLocale || 'EN');
+  }, []);
+  
+  
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "", label: "Services" },
-    { href: "/about", label: "About Us" },
-    { href: "/careers", label: "Careers" },
+    { href: "/", label:  t('Home') },
+    { href: "", label: t('Services') },
+    { href: "/about", label: t('About Us') },
+    { href: "/careers", label: t('Careers') },
   ];
 
   const handleClick = () => {
@@ -28,11 +47,11 @@ export default function Navbar() {
 
   // Services submenu items
   const servicesSubmenu = [
-    { href: "/services/voicebot", label: "AI Voicebots" },
-    { href: "/services/chatbot", label: "AI Chatbots" },
-    { href: "/services/agents", label: "AI Agents" },
-    { href: "/services/software", label: "Smart Software Development" },
-    { href: "/services/automations", label: "Automations" },
+    { href: "/services/voicebot", label: t('AI Voicebots')},
+    { href: "/services/chatbot", label: t('AI Chatbots') },
+    { href: "/services/agents", label: t('AI Agents') },
+    { href: "/services/software", label: t('Smart Software Development') },
+    { href: "/services/automations", label: t('Automations') },
   ];
 
   return (
@@ -136,7 +155,7 @@ export default function Navbar() {
             >
               <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
-                Let's Chat
+              {t('Lets Chat')}
               </span>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
             </button>
@@ -258,7 +277,7 @@ export default function Navbar() {
           >
             <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
-              Let's Chat
+             {t('Lets Chat')}
             </span>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
           </button>

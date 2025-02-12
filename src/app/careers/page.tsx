@@ -2,8 +2,11 @@
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Pill } from "lucide-react";
+import { useTranslations } from 'next-intl';
 
 const CareersPage = () => {
+    const t = useTranslations('common');
+    
     const jobs = [
         {
             title: "Software Developer",
@@ -31,7 +34,7 @@ const CareersPage = () => {
                             <div className="flex items-center justify-center">
                                 <TypeAnimation
                                     sequence={[
-                                        '> Were hiring!',
+                                        t('We are hiring')  
                                     ]}
                                     speed={50}
                                     cursor={false}
@@ -45,7 +48,7 @@ const CareersPage = () => {
                         </div>
 
                         <p className="text-gray-300 text-lg mb-12">
-                            Our philosophy is simple — hire a team of diverse, passionate people and foster a culture that empowers you to do your best work.
+                        {t('Philospohy')}  
                         </p>
 
                     </div>

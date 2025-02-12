@@ -17,6 +17,7 @@ import {
   Mail,
   Phone
 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const ProcessStep = ({
   number,
@@ -74,6 +75,7 @@ const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: str
 
 
 export default function Home() {
+  const t = useTranslations('common');
 
 
 
@@ -84,10 +86,10 @@ export default function Home() {
           {/* Small Top Text */}
           <div className="space-y-2">
             <p className="text-gray-300 text-lg font-light tracking-widest">
-              AI & Automation Consulting
+              {t('AI & Automation Consulting')}
             </p>
             <p className="text-gray-400 text-sm font-light tracking-wide">
-              Efficient Software Development
+              {t('Efficient Software Development')}
             </p>
           </div>
 
@@ -96,7 +98,7 @@ export default function Home() {
             <div className="flex items-center justify-center">
               <TypeAnimation
                 sequence={[
-                  '> AI, Automation & Software Made Simple',
+                  '> ' + t('AI, Automation & Software Made Simple'),
                 ]}
                 speed={50}
                 cursor={false}
@@ -111,7 +113,7 @@ export default function Home() {
 
           {/* Description Text */}
           <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Don't have any idea of how we can help you? Get a Free custom plan for how AI and automations can improve your business
+            {t('Dont have any idea of how we can help you?')}
           </p>
 
           {/* Enhanced Matrix Button */}
@@ -127,7 +129,7 @@ export default function Home() {
               <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                INITIATE_FREE_PLAN
+                {t('INITIATE_FREE_PLAN')}
               </span>
             </div>
 
@@ -142,11 +144,11 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <p className="text-gray-300 text-lg font-light tracking-widest text-center mb-2">
-            How our process works
+          {t('How our process works')}
           </p>
 
           <h2 className="text-3xl font-mono text-blue-400 mb-16 text-center mt-4 relative">
-            From Consulting to Smart Development
+            {t('From Consulting to Smart Development')}
             <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50" />
           </h2>
 
@@ -156,32 +158,32 @@ export default function Home() {
             <ProcessStep
               number="01"
               icon={Search}
-              title="Discovery Session"
-              description="We'll examine your company's processes, talk to you to understand your pain points and desires, and analyse your industry"
+              title={t('Discovery Session')}
+              description={t('Discovery Content')}
             />
             <ProcessStep
               number="02"
               icon={FileText}
-              title="Action Plan Proposal"
-              description="After considering every potential beneficial service for your company, we will calculate an estimate ROI for each one and give you a final proposal"
+              title={t('Action Plan Proposal')}
+              description={t('Action Plan Content')}
             />
             <ProcessStep
               number="03"
               icon={Code2}
-              title="Development Protocol"
-              description="Having an arsenal of the newest development tools, we will minimize the time spent coding and deliver an affordable, high-quality product with unprecedented go-to-market speed"
+              title={t('Development Protocol')}
+              description={t('Development Content')}
             />
             <ProcessStep
               number="04"
               icon={Network}
-              title="Integration"
-              description="We will take care of seamlessly connecting your new product with your current systems"
+              title={t('Integration')}
+              description={t('Integration Content')}
             />
             <ProcessStep
               number="05"
               icon={RefreshCw}
-              title="Optimization Loop"
-              description="Our rapid development enables continuous iteration. We actively incorporate feedback from you and your clients to refine the solution"
+              title={t('Optimization Loop')}
+              description={t('Optimization Content')}
             />
           </div>
         </div>
@@ -194,28 +196,28 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ServiceCard
               icon={Brain}
-              title="AI Voicebots"
-              description="AI that speaks with you like an actual human being. It can be complemented with advanced functions"
+              title={t('AI Voicebots')}
+              description={t('AI Content')}
             />
             <ServiceCard
               icon={MessageSquare}
-              title="AI Chatbots"
-              description="AI that talks with you by text. Used for customer interaction or as an internal tool"
+              title={t('AI Chatbots')}
+              description={t('AI Chat Content')}
             />
             <ServiceCard
               icon={Bot}
-              title="AI Agents"
-              description="AI that performs actions. Data analysis, manipulation, generation and prediction"
+              title={t('AI Agents')}
+              description={t('AI Agents Content')}
             />
             <ServiceCard
               icon={Cog}
-              title="Automations"
-              description="Automate every and any repetitive process. Data extraction, transfer and retrieval"
+              title={t('Automations')}
+              description={t('Automations Content')}
             />
             <ServiceCard
               icon={Code2}
-              title="Smart Software Development"
-              description="From apps and websites to back-end complex systems. Less resources, faster development, more iteration, better product"
+              title={t('Smart Software Development')}
+              description={t('Smart Software Development Content')}
             />
           </div>
         </div>

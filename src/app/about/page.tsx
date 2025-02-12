@@ -1,15 +1,34 @@
 "use client";
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
+import { useTranslations } from 'next-intl';
 
 export default function AboutPage() {
+    const t = useTranslations('common');
+
+    const values = [
+        {
+            title: t('Innovation'),
+            description: t('Innovation Content')
+        },
+        {
+            title:t('Efficiency'),
+            description: t('Efficiency Content')
+        },
+        {
+            title: t('Customer-Centricity'),
+            description: t('Customer-Centricity Content')
+        }
+    ];
+
+
     return (
         <div className="min-h-screen text-gray-300">
             {/* Hero Section */}
             <section className="relative pt-20 px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <TypeAnimation
-                        sequence={['> About the company']}
+                        sequence={['About Us']}
                         speed={50}
                         cursor={false}
                         className="text-4xl md:text-6xl font-bold text-blue-400"
@@ -25,10 +44,10 @@ export default function AboutPage() {
                     {/* About Content */}
                     <div className="mb-16 max-w-3xl mx-auto">
                         <p className="text-lg text-gray-300 leading-relaxed">
-                            At NovaGate AI Solutions, we redefine how businesses grow and operate in a digital world by making advanced technology accessible. Our team of AI experts empowers companies to elevate customer interactions and streamline processes for greater agility and success.
+                            {t('At Novagate')}
                         </p>
                         <a href="/careers" className="block mt-3 text-blue-400 font-semibold hover:underline hover:text-blue-500 transition-colors">
-                            - Join us -
+                            {t('- Join us -')}
                         </a>
                     </div>
                 </div>
@@ -38,7 +57,7 @@ export default function AboutPage() {
             {/* Founders Section */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">Meet Our Founders</h2>
+                    <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">{t('Meet Our Founders')}</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {founders.map((founder) => (
@@ -63,7 +82,7 @@ export default function AboutPage() {
             {/* Values Section */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">Our Core Values</h2>
+                    <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">{t('Our Core Values')}</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {values.map((value) => (
@@ -100,17 +119,3 @@ const founders = [
     }
 ];
 
-const values = [
-    {
-        title: "Innovation",
-        description: "We continuously push the boundaries of AI and automation, leveraging cutting-edge technologies to create impactful, future-ready solutions."
-    },
-    {
-        title: "Efficiency",
-        description: "Our goal is to maximize productivity and streamline processes, delivering results that save time, reduce costs, and boost operational performance."
-    },
-    {
-        title: "Customer-Centricity",
-        description: "We design every solution with the client's unique needs in mind, ensuring a tailored approach that drives measurable improvements in customer engagement and satisfaction."
-    }
-];
