@@ -2,14 +2,14 @@
 import ServiceCard from '@/components/cards';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
-import { 
+import {
     Workflow,  // Process Automation
     ListChecks,  // Task Automation
     BrainCircuit,  // Decision Automation
     Database,  // Data Integration
     Activity,  // Data Monitoring
     FileText  // Document Automation
-  } from "lucide-react"
+} from "lucide-react"
 
 export default function Automations() {
 
@@ -76,17 +76,19 @@ export default function Automations() {
             <section className="text-gray-300 p-8 max-w-4xl mx-auto pt-20">
                 <h2 className="text-2xl font-bold text-blue-400 mb-4">What is it?</h2>
                 <p className="mb-6">
-                Automations are systematic processes that execute repetitive tasks with precision and speed. Leveraging software and technology, they streamline workflows, reduce manual intervention, and ensure consistency.
+                    Automations are systematic processes that execute repetitive tasks with precision and speed. Leveraging software and technology, they streamline workflows, reduce manual intervention, and ensure consistency.
                 </p>
                 <p className="mb-6">
-                By automating routine operations, businesses can enhance efficiency, minimize errors, and focus on strategic growth, all while maintaining high standards of productivity and quality.
+                    By automating routine operations, businesses can enhance efficiency, minimize errors, and focus on strategic growth, all while maintaining high standards of productivity and quality.
                 </p>
             </section>
 
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">Use cases‍‍</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
+                        Use cases
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={Workflow}
                             title="Process Automation"

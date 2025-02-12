@@ -2,14 +2,14 @@
 import ServiceCard from '@/components/cards';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
-import { 
+import {
     UserCog,  // Internal Support
     Star,  // Customer Reviews and Feedback
     Package,  // Order Processing
     CalendarCheck,  // Booking and Reservations
     MessageCircle,  // Social Media Management
     Handshake  // Sales Support
-  } from "lucide-react";
+} from "lucide-react";
 
 export default function Chatbots() {
 
@@ -85,8 +85,10 @@ export default function Chatbots() {
 
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">Use cases‍‍</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
+                        Use cases
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={UserCog}
                             title="Internal Support"

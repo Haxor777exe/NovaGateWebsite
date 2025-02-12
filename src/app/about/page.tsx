@@ -28,7 +28,7 @@ export default function AboutPage() {
                             At NovaGate AI Solutions, we redefine how businesses grow and operate in a digital world by making advanced technology accessible. Our team of AI experts empowers companies to elevate customer interactions and streamline processes for greater agility and success.
                         </p>
                         <a href="/careers" className="block mt-3 text-blue-400 font-semibold hover:underline hover:text-blue-500 transition-colors">
-                           - Join us -
+                            - Join us -
                         </a>
                     </div>
                 </div>
@@ -38,12 +38,12 @@ export default function AboutPage() {
             {/* Founders Section */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl text-blue-400 mb-12 text-center">Meet Our Founders</h2>
+                    <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">Meet Our Founders</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {founders.map((founder) => (
-                            <div key={founder.name} className="group bg-black/40 p-6 rounded-xl border border-blue-500/20 hover:bg-blue-500/10 transition-colors">
-                                <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/20">
+                            <div key={founder.name} className="group bg-[#0a0f1f] p-6 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                                <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/50">
                                     <Image
                                         src={founder.image}
                                         alt={founder.name}
@@ -51,9 +51,9 @@ export default function AboutPage() {
                                         objectFit="cover"
                                     />
                                 </div>
-                                <h3 className="text-xl text-blue-400">{founder.name}</h3>
-                                <p className="text-blue-400/80 mb-2">{founder.title}</p>
-                                <p className="text-gray-300">{founder.bio}</p>
+                                <h3 className="text-xl text-white drop-shadow-md">{founder.name}</h3>
+                                <p className="text-blue-300 mb-2">{founder.title}</p>
+                                <p className="text-gray-200">{founder.bio}</p>
                             </div>
                         ))}
                     </div>
@@ -63,13 +63,13 @@ export default function AboutPage() {
             {/* Values Section */}
             <section className="py-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl text-blue-400 mb-12 text-center">Our Core Values</h2>
+                    <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">Our Core Values</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {values.map((value) => (
-                            <div key={value.title} className="p-6 rounded-xl border border-blue-500/20 bg-black/40 hover:bg-blue-500/10">
-                                <h3 className="text-2xl text-blue-400 mb-4">{value.title}</h3>
-                                <p className="text-gray-300">{value.description}</p>
+                            <div key={value.title} className="p-6 rounded-xl border border-blue-500/50 bg-[#0a0f1f] hover:bg-blue-500/10 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all">
+                                <h3 className="text-2xl text-white mb-4 drop-shadow-md">{value.title}</h3>
+                                <p className="text-gray-200">{value.description}</p>
                             </div>
                         ))}
                     </div>

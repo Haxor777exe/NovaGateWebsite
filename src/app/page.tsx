@@ -18,25 +18,44 @@ import {
   Phone
 } from 'lucide-react';
 
-const ProcessStep = ({ number, icon: Icon, title, description }: { number: string, icon: any, title: string, description: string }) => (
-  <div className="relative pl-12 group">
-    {/* Animated step number with connecting line */}
-    <span className="absolute left-12 top-0 -translate-x-1/2 w-8 h-8 flex items-center justify-center rounded-full border-2 border-blue-400/30 bg-black/50 text-blue-400 font-mono text-sm group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:text-blue-300 transition-all duration-300 z-10">
-      {number}
-    </span>
+const ProcessStep = ({
+  number,
+  icon: Icon,
+  title,
+  description,
+}: {
+  number: string;
+  icon: any;
+  title: string;
+  description: string;
+}) => (
+  // On small screens stack the number and card, on md+ place them side-by-side.
+  <div className="relative group flex flex-col md:flex-row items-stretch gap-8">
+    {/* Number container – on md+ it will be a fixed-width column matching the card’s height */}
+    <div className="flex md:w-32 items-center justify-center">
+      <span className="font-mono text-6xl md:text-8xl font-bold text-blue-500/50 transition-colors duration-300 group-hover:text-blue-500/75">
+        {number}
+      </span>
+    </div>
 
     {/* Content card */}
-    <div className="p-6 bg-black/40 rounded-lg border border-blue-500/20 group-hover:border-blue-500 transition-all duration-300 relative overflow-hidden">
+    <div className="flex-1 p-6 bg-blue-500/10 rounded-lg border border-blue-500/40 transition-all duration-300 group-hover:border-blue-500/60 relative overflow-hidden">
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-10" />
 
       <div className="flex items-start space-x-4 relative z-10">
-        <div className="p-3 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-all duration-300 shadow-[0_0_15px_-3px_rgba(96,165,250,0.1)]">
-          <Icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+        {/* Icon container */}
+        <div className="p-3 bg-blue-500/20 rounded-lg transition-all duration-300 group-hover:bg-blue-500/30">
+          <Icon className="w-6 h-6 text-blue-400 transition-colors group-hover:text-blue-300" />
         </div>
-        <div>
-          <h3 className="font-mono text-blue-400 mb-2 group-hover:text-blue-300 transition-colors">{title}</h3>
-          <p className="text-gray-300 text-sm font-light leading-relaxed">{description}</p>
+
+        <div className="flex-1">
+          <h3 className="font-mono text-blue-400 mb-2 text-lg transition-colors group-hover:text-blue-300">
+            {title}
+          </h3>
+          <p className="text-gray-300 text-sm font-light leading-relaxed">
+            {description}
+          </p>
         </div>
       </div>
     </div>
@@ -44,14 +63,15 @@ const ProcessStep = ({ number, icon: Icon, title, description }: { number: strin
 );
 
 const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
-  <div className="relative p-6 bg-black/40 rounded-lg border border-blue-500/20 hover:border-blue-500 transition-all duration-300 group">
-    <div className="absolute inset-0 bg-blue-500/5 rounded-lg group-hover:bg-blue-500/10 transition-all duration-300"></div>
-    <Icon className="w-12 h-12 text-blue-500 mb-4 group-hover:text-blue-400 transition-all duration-300" />
-    <h3 className="text-xl font-mono text-blue-400 mb-2">{title}</h3>
-    <p className="text-gray-300">{description}</p>
-    <button className="mt-4 text-blue-400 hover:text-blue-300 font-mono text-sm">Learn More →</button>
+  <div className="relative p-6  rounded-lg border border-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/60 transition-all duration-300 group">
+    <div className="absolute inset-0 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-all duration-300"></div>
+    <Icon className="w-12 h-12 text-blue-400 mb-4 group-hover:text-white transition-all duration-300" />
+    <h3 className="text-xl font-mono text-white mb-2">{title}</h3>
+    <p className="text-gray-200">{description}</p>
+    <button className="mt-4 text-blue-400 hover:text-white font-mono text-sm transition-colors duration-300">Learn More →</button>
   </div>
 );
+
 
 export default function Home() {
 
@@ -118,22 +138,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-black/50 relative">
-        {/* Animated background grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-5" />
+      <section className="py-20 relative overflow-hidden">
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <p className="text-gray-300 text-lg font-light tracking-widest text-center mb-2">
             How our process works
           </p>
+
           <h2 className="text-3xl font-mono text-blue-400 mb-16 text-center mt-4 relative">
             From Consulting to Smart Development
-            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-24 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50" />
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-blue-400 to-transparent opacity-50" />
           </h2>
 
-          <div className="relative space-y-12">
-            {/* Vertical connecting line with subtle animation */}
-            <div className="absolute left-12 top-0 w-0.5 h-full bg-gradient-to-b from-blue-400/20 via-blue-400/30 to-transparent [box-shadow:_0_0_15px_rgba(96,165,250,0.3)] animate-pulse" />
+          <div className="relative space-y-16">
+            {/* Connecting line */}
 
             <ProcessStep
               number="01"
@@ -169,31 +187,32 @@ export default function Home() {
         </div>
       </section>
 
+
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">Core Systems</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard 
+            <ServiceCard
               icon={Brain}
               title="AI Voicebots"
               description="AI that speaks with you like an actual human being. It can be complemented with advanced functions"
             />
-            <ServiceCard 
+            <ServiceCard
               icon={MessageSquare}
               title="AI Chatbots"
               description="AI that talks with you by text. Used for customer interaction or as an internal tool"
             />
-            <ServiceCard 
+            <ServiceCard
               icon={Bot}
               title="AI Agents"
               description="AI that performs actions. Data analysis, manipulation, generation and prediction"
             />
-            <ServiceCard 
+            <ServiceCard
               icon={Cog}
               title="Automations"
               description="Automate every and any repetitive process. Data extraction, transfer and retrieval"
             />
-            <ServiceCard 
+            <ServiceCard
               icon={Code2}
               title="Smart Software Development"
               description="From apps and websites to back-end complex systems. Less resources, faster development, more iteration, better product"

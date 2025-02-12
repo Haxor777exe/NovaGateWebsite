@@ -2,15 +2,15 @@
 import ServiceCard from '@/components/cards';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
-import { 
+import {
     Brain, // AI Model Training & Fine-Tuning
     Workflow, // Workflow Automation
     BarChart3, // Predictive Analysis
     Database, // Data Processing
     Globe, // Data Scraping
     Sparkles // Generative AI
-  } from "lucide-react";
-  
+} from "lucide-react";
+
 
 export default function Agents() {
 
@@ -87,8 +87,10 @@ export default function Agents() {
 
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">Use cases‍‍</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
+                        Use cases
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={Brain}
                             title="AI Model Training & Fine-Tuning"

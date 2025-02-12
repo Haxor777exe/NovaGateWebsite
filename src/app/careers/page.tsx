@@ -59,25 +59,23 @@ const CareersPage = () => {
                         {jobs.map((job, index) => (
                             <div
                                 key={index}
-                                className="group relative p-8 bg-black/40 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all"
+                                className="group relative p-8 bg-blue-500/10 rounded-lg border border-blue-500/50 hover:border-blue-400 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all"
                             >
                                 <div className="space-y-4">
                                     <div className="flex items-center justify-between">
-                                        <h2 className="text-2xl font-bold text-blue-400">{job.title}</h2>
-                                        <span className="px-4 py-1 bg-blue-500/10 text-blue-400 rounded-full text-sm">
-                                            {job.department}
-                                        </span>
+                                        <h2 className="text-2xl font-bold text-white drop-shadow-md">{job.title}</h2>
+                                        <span className="px-4 py-1 bg-blue-500/20 text-white rounded-full text-sm">{job.department}</span>
                                     </div>
-                                    <p className="text-gray-300">{job.description}</p>
+                                    <p className="text-gray-200">{job.description}</p>
                                     <div className="flex space-x-4 text-sm">
-                                        <span className="flex items-center">
+                                        <span className="flex items-center text-gray-300">
                                             <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                             {job.location}
                                         </span>
-                                        <span className="flex items-center">
+                                        <span className="flex items-center text-gray-300">
                                             <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                             </svg>
@@ -86,15 +84,13 @@ const CareersPage = () => {
                                     </div>
                                     <div className="flex space-x-4 mt-6">
                                         {/* Apply Now - Red Icon Pill */}
-                                        <button className="flex items-center px-6 py-2 bg-red-500/20 text-red-400 rounded-full hover:bg-red-500/40 transition-all">
-                                            <Pill className="w-5 h-5 mr-2" />
-                                            Apply Now
+                                        <button className="flex items-center px-6 py-2 bg-red-500/30 text-red-300 rounded-full hover:bg-red-500/50 transition-all">
+                                            <Pill className="w-5 h-5" />
                                         </button>
 
                                         {/* Skip - Blue Solid Pill */}
-                                        <button className="flex items-center px-6 py-2 border border-blue-500/20 text-blue-400 rounded-full hover:border-blue-500/40 hover:bg-blue-500/10 transition-all">
-                                            <Pill className="w-5 h-5 mr-2" />
-                                            Skip
+                                        <button className="flex items-center px-6 py-2 border border-blue-500/50 text-blue-300 rounded-full hover:border-blue-500/60 hover:bg-blue-500/20 transition-all">
+                                            <Pill className="w-5 h-5" />
                                         </button>
                                     </div>
                                 </div>

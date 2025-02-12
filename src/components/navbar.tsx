@@ -2,13 +2,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { X } from "lucide-react";
 
 export default function Navbar() {
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("EN");
   const [menuOpen, setMenuOpen] = useState(false);
-  // New state for mobile "Services" dropdown
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const pathname = usePathname();
 
@@ -19,10 +17,14 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
+    { href: "", label: "Services" },
     { href: "/about", label: "About Us" },
     { href: "/careers", label: "Careers" },
   ];
+
+  const handleClick = () => {
+    window.location.href = "https://www.youtube.com";
+  };
 
   // Services submenu items
   const servicesSubmenu = [
@@ -56,9 +58,8 @@ export default function Navbar() {
                   <div key={link.href} className="relative group">
                     <Link href={link.href}>
                       <span
-                        className={`hover-glitch cursor-pointer ${
-                          pathname === link.href ? "active" : ""
-                        }`}
+                        className={`hover-glitch cursor-pointer ${pathname === link.href ? "active" : ""
+                          }`}
                       >
                         {link.label}
                       </span>
@@ -93,9 +94,8 @@ export default function Navbar() {
                 return (
                   <Link key={link.href} href={link.href}>
                     <span
-                      className={`hover-glitch cursor-pointer ${
-                        pathname === link.href ? "active" : ""
-                      }`}
+                      className={`hover-glitch cursor-pointer ${pathname === link.href ? "active" : ""
+                        }`}
                     >
                       {link.label}
                     </span>
@@ -129,8 +129,11 @@ export default function Navbar() {
               )}
             </div>
 
-            <button className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
-              shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden">
+            <button
+              className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+              shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
+              onClick={handleClick}
+            >
               <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
                 Let's Chat
@@ -139,7 +142,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* MOBILE CONTROLS */}
+          {/* MOBILE CONTROLS: Single Toggle Button */}
           <div className="md:hidden flex items-center space-x-4">
             <div className="relative">
               <button
@@ -163,26 +166,24 @@ export default function Navbar() {
               )}
             </div>
 
+            {/* New toggle button */}
             <button
+              className="md:hidden w-8 h-8 flex items-center justify-center focus:outline-none z-50"
               onClick={() => setMenuOpen(!menuOpen)}
-              className="block focus:outline-none"
-              aria-label="Toggle mobile menu"
+              aria-label="Toggle menu"
             >
-              <div className="relative w-6 h-5 flex flex-col justify-between items-center">
+              <div className="w-6 h-5 relative flex flex-col justify-center items-center">
                 <span
-                  className={`block h-[2px] w-full bg-white transition-transform duration-300 ${
-                    menuOpen ? "translate-y-2 rotate-45" : ""
-                  }`}
+                  className={`absolute w-full h-0.5 bg-white transform transition-all duration-300 ease-in-out ${menuOpen ? "rotate-45" : "-translate-y-2"
+                    }`}
                 />
                 <span
-                  className={`block h-[2px] w-full bg-white transition-opacity duration-300 ${
-                    menuOpen ? "opacity-0" : ""
-                  }`}
+                  className={`absolute w-full h-0.5 bg-white transform transition-all duration-300 ease-in-out ${menuOpen ? "opacity-0" : "opacity-100"
+                    }`}
                 />
                 <span
-                  className={`block h-[2px] w-full bg-white transition-transform duration-300 ${
-                    menuOpen ? "-translate-y-2 -rotate-45" : ""
-                  }`}
+                  className={`absolute w-full h-0.5 bg-white transform transition-all duration-300 ease-in-out ${menuOpen ? "-rotate-45" : "translate-y-2"
+                    }`}
                 />
               </div>
             </button>
@@ -194,38 +195,34 @@ export default function Navbar() {
       <div
         className={`fixed inset-0 bg-black/95 backdrop-blur-sm z-40 md:hidden flex flex-col items-center justify-center 
           transition-all duration-300 ease-in-out
-          ${menuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-full pointer-events-none"}
+          ${menuOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-full pointer-events-none"
+          }
         `}
       >
-        {/* Close button */}
-        <button
-          onClick={() => setMenuOpen(false)}
-          className="absolute top-8 right-4 text-white z-50 p-2"
-          aria-label="Close mobile menu"
-        >
-          <X size={32} />
-        </button>
-
-        <div className="h-full flex flex-col items-center justify-center space-y-8 text-2xl">
+        <div className="h-full flex flex-col items-center justify-center space-y-8">
           {navLinks.map((link) => {
             if (link.label === "Services") {
               return (
                 <div key={link.href} className="flex flex-col items-center">
                   <button
                     onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                    className="text-white hover-glitch cursor-pointer text-center"
+                    // Make main mobile links uppercase, larger, bold
+                    className="text-white hover-glitch cursor-pointer text-center text-3xl uppercase font-bold"
                   >
                     {link.label}
                   </button>
                   {mobileServicesOpen && (
-                    <div className="flex flex-col mt-4 space-y-4 text-center">
+                    <div className="flex flex-col mt-4 space-y-4 bg-white text-2xl uppercase font-bold rounded-md p-4">
                       {servicesSubmenu.map((service) => (
                         <Link
                           key={service.href}
                           href={service.href}
                           onClick={() => setMenuOpen(false)}
                         >
-                          <span className="text-gray-300 hover-glitch cursor-pointer">
+                          {/* Sub-links can remain smaller */}
+                          <span className="text-black text-lg">
                             {service.label}
                           </span>
                         </Link>
@@ -241,10 +238,10 @@ export default function Navbar() {
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                 >
+                  {/* Make main mobile links uppercase, larger, bold */}
                   <span
-                    className={`text-white hover-glitch cursor-pointer text-center ${
-                      pathname === link.href ? "active" : ""
-                    }`}
+                    className={`text-white hover-glitch cursor-pointer text-center text-3xl uppercase font-bold ${pathname === link.href ? "active" : ""
+                      }`}
                   >
                     {link.label}
                   </span>
@@ -254,8 +251,10 @@ export default function Navbar() {
           })}
 
           {/* Mobile Let's Chat button */}
-          <button className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+          <button
+            className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
               shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
+            onClick={handleClick}
           >
             <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
@@ -276,9 +275,10 @@ export default function Navbar() {
           animation: glitch 0.5s infinite;
         }
         .active {
-          color: #1a64c4;
-          font-weight: bold;
-        }
+  color: #1a64c4;
+  font-weight: bold;
+  animation: glitch 0.5s infinite;
+}
         @keyframes glitch {
           0% {
             text-shadow: none;

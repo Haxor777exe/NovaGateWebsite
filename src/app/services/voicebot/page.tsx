@@ -160,7 +160,7 @@ export default function Voicebots() {
                     </div>
 
                     {/* Interactive Demo Section */}
-                    <div className="bg-black/40 p-4 md:p-6 rounded-lg md:rounded-xl border border-blue-500/20">
+                    <div className="bg-blue-500/10 p-4 md:p-6 rounded-lg md:rounded-xl border border-blue-500">
                         <h3 className="text-blue-400 text-lg md:text-xl font-bold mb-4 md:mb-6">
                             <span className="border-b-2 border-blue-500/40 pb-1">Experience Next-Gen Voice AI</span>
                         </h3>
@@ -201,8 +201,10 @@ export default function Voicebots() {
 
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">Use cases‍‍</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
+                        Use cases
+                    </h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={Headset}
                             title="Customer Service and Technical Support"
