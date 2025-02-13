@@ -3,14 +3,15 @@ import { Instagram, Linkedin, Mail, Phone, Copy, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 
 const Footer = () => {
     const [copiedEmail, setCopiedEmail] = useState(false);
     const [copiedPhone, setCopiedPhone] = useState(false);
-      const t = useTranslations('common');
+    const t = useTranslations('common');
 
-    const copyToClipboard = async (text:any, type:any) => {
+    const copyToClipboard = async (text: any, type: any) => {
         try {
             await navigator.clipboard.writeText(text);
             if (type === 'email') {
@@ -38,9 +39,17 @@ const Footer = () => {
                     >
                         <h3 className="font-mono text-blue-400 mb-4"> {t('Pages')}</h3>
                         <ul className="space-y-2 text-gray-300">
-                            {[ t('AI Voicebots'), t('AI Chatbots'), t('AI Agents'), t('Smart Software Development'), t('Automations')].map((item) => (
-                                <li key={item} className="hover:text-blue-400 transition-colors cursor-pointer">
-                                    {item}
+                            {[
+                                { label: t('AI Voicebots'), href: '/services/voicebot' },
+                                { label: t('AI Chatbots'), href: '/services/chatbot' },
+                                { label: t('AI Agents'), href: '/services/agents' },
+                                { label: t('Smart Software Development'), href: '/services/software' },
+                                { label: t('Automations'), href: '/services/automations' }
+                            ].map((item) => (
+                                <li key={item.label}>
+                                    <Link href={item.href} className="hover:text-blue-400 transition-colors cursor-pointer">
+                                        {item.label}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -55,7 +64,7 @@ const Footer = () => {
                     >
                         <h3 className="font-mono text-blue-400 mb-4"> {t('Contact')}</h3>
                         <ul className="space-y-2 text-gray-300">
-                            <li 
+                            <li
                                 className="flex items-center space-x-2 justify-center md:justify-start group cursor-pointer"
                                 onClick={() => copyToClipboard('david@novagate-solutions.com', 'email')}
                             >
@@ -67,7 +76,7 @@ const Footer = () => {
                                     <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 )}
                             </li>
-                            <li 
+                            <li
                                 className="flex items-center space-x-2 justify-center md:justify-start group cursor-pointer"
                                 onClick={() => copyToClipboard('+45 71 62 63 79', 'phone')}
                             >

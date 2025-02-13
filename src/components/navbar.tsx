@@ -41,10 +41,6 @@ export default function Navbar() {
     { href: "/careers", label: t('Careers') },
   ];
 
-  const handleClick = () => {
-    window.location.href = "https://www.youtube.com";
-  };
-
   // Services submenu items
   const servicesSubmenu = [
     { href: "/services/voicebot", label: t('AI Voicebots')},
@@ -151,7 +147,7 @@ export default function Navbar() {
             <button
               className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
               shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
-              onClick={handleClick}
+              onClick={() => router.push('https://cal.com/david.nabeiro/novagate.30min')}
             >
               <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
@@ -273,7 +269,7 @@ export default function Navbar() {
           <button
             className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
               shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
-            onClick={handleClick}
+              onClick={() => router.push('https://cal.com/david.nabeiro/novagate.30min')}
           >
             <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
