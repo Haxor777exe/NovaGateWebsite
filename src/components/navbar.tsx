@@ -21,7 +21,7 @@ export default function Navbar() {
     // Set the cookie with an expiration date (e.g., 1 year)
     document.cookie = `locale=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
     router.refresh();
-};
+  };
 
 
   useEffect(() => {
@@ -29,13 +29,13 @@ export default function Navbar() {
       .split('; ')
       .find(row => row.startsWith('locale='))
       ?.split('=')[1];
-  
+
     setSelectedLanguage(storedLocale || 'EN');
   }, []);
-  
-  
+
+
   const navLinks = [
-    { href: "/", label:  t('Home') },
+    { href: "/", label: t('Home') },
     { href: "", label: t('Services') },
     { href: "/about", label: t('About Us') },
     { href: "/careers", label: t('Careers') },
@@ -43,7 +43,7 @@ export default function Navbar() {
 
   // Services submenu items
   const servicesSubmenu = [
-    { href: "/services/voicebot", label: t('AI Voicebots')},
+    { href: "/services/voicebot", label: t('AI Voicebots') },
     { href: "/services/chatbot", label: t('AI Chatbots') },
     { href: "/services/agents", label: t('AI Agents') },
     { href: "/services/software", label: t('Smart Software Development') },
@@ -68,7 +68,7 @@ export default function Navbar() {
           {/* CENTER: NAV LINKS (Desktop) */}
           <div className="hidden md:flex flex-1 justify-center items-center space-x-6">
             {navLinks.map((link) => {
-              if (link.label === "Services") {
+              if (link.label === t('Services')) {
                 return (
                   <div key={link.href} className="relative group">
                     <Link href={link.href}>
@@ -144,17 +144,22 @@ export default function Navbar() {
               )}
             </div>
 
-            <button
-              className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
-              shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
-              onClick={() => router.push('https://cal.com/david.nabeiro/novagate.30min')}
+            <a
+              href="https://cal.com/david.nabeiro/novagate.30min"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
-              {t('Lets Chat')}
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
-            </button>
+              <button
+                className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+      shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
+                  {t('Lets Chat')}
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
+              </button>
+            </a>
           </div>
 
           {/* MOBILE CONTROLS: Single Toggle Button */}
@@ -218,7 +223,7 @@ export default function Navbar() {
       >
         <div className="h-full flex flex-col items-center justify-center space-y-8">
           {navLinks.map((link) => {
-            if (link.label === "Services") {
+            if (link.label === t('Services')) {
               return (
                 <div key={link.href} className="flex flex-col items-center">
                   <button
@@ -266,17 +271,22 @@ export default function Navbar() {
           })}
 
           {/* Mobile Let's Chat button */}
-          <button
-            className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
-              shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
-              onClick={() => router.push('https://cal.com/david.nabeiro/novagate.30min')}
+          <a
+            href="https://cal.com/david.nabeiro/novagate.30min"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
-             {t('Lets Chat')}
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
-          </button>
+            <button
+              className="relative px-4 py-2 rounded-lg bg-black border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+      shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group text-lg font-semibold tracking-wide overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-mono tracking-widest">
+                {t('Lets Chat')}
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent opacity-0 group-hover:opacity-100 animate-scan" />
+            </button>
+          </a>
         </div>
       </div>
 

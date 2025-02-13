@@ -42,27 +42,32 @@ export default function Software() {
                         Scale effortlessly and convert to code when neededDon't have any idea of how we can help you? Get a Free custom plan for how AI and automations can improve your business
                     </p>
 
-                    {/* Enhanced Matrix Button */}
-                    <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+                    <a
+                        href="https://cal.com/david.nabeiro/novagate.30min"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
           shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group
           text-lg font-semibold overflow-hidden bg-black/80 backdrop-blur-sm">
 
-                        {/* Grid overlay using CSS instead of SVG */}
-                        <div className="absolute inset-0 bg-[radial-gradient(rgba(96,165,250,0.1) 1px,transparent 1px)] bg-[size:20px_20px]" />
+                            {/* Grid overlay using CSS instead of SVG */}
+                            <div className="absolute inset-0 bg-[radial-gradient(rgba(96,165,250,0.1) 1px,transparent 1px)] bg-[size:20px_20px]" />
 
-                        {/* Button content */}
-                        <div className="relative flex items-center justify-center gap-2">
-                            <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
-                            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
+                            {/* Button content */}
+                            <div className="relative flex items-center justify-center gap-2">
+                                <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
+                                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                                GET STARTED
-                            </span>
-                        </div>
+                                    GET STARTED
+                                </span>
+                            </div>
 
-                        {/* Scanning line effect */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent 
+                            {/* Scanning line effect */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent 
   opacity-0 group-hover:opacity-100 animate-scan" />
-                    </button>
+                        </button>
+                    </a>
                 </div>
             </section>
 
