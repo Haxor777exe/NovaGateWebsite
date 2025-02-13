@@ -2,6 +2,9 @@
 import ServiceCard from '@/components/cards';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
+import { useTranslations } from 'next-intl';
+import { Check } from 'lucide-react';
+
 import {
     Workflow,  // Process Automation
     ListChecks,  // Task Automation
@@ -9,9 +12,10 @@ import {
     Database,  // Data Integration
     Activity,  // Data Monitoring
     FileText  // Document Automation
-} from "lucide-react"
+} from "lucide-react";
 
 export default function Automations() {
+    const t = useTranslations('common');
 
     return (
         <div>
@@ -20,7 +24,7 @@ export default function Automations() {
                     {/* Small Top Text */}
                     <div className="space-y-2">
                         <p className="text-gray-300 text-lg font-light tracking-widest">
-                            Automate processes. Focus on what matters.
+                            {t('Automate processes')}
                         </p>
                     </div>
 
@@ -28,9 +32,7 @@ export default function Automations() {
                     <div className="relative group">
                         <div className="flex items-center justify-center">
                             <TypeAnimation
-                                sequence={[
-                                    '> Automations',
-                                ]}
+                                sequence={[t('Automations')]}
                                 speed={50}
                                 cursor={false}
                                 className="text-4xl md:text-6xl font-bold text-blue-400"
@@ -42,19 +44,32 @@ export default function Automations() {
                         </div>
                     </div>
 
-                    {/* Description Text */}
-                    <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">Accelerate development with rapid, iterative cycles
-                        Reduce costs and maximize ROI with efficient solutions
-                        Empower non-developers to make quick updates easily
-                        Scale effortlessly and convert to code when needed
-                    </p>
+
+                    <div className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto text-left leading-relaxed space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p> {t('Accelerate development')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p> {t('Reduce costs')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Empower non-developers')}}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Scale effortlessly')}</p>
+                        </div>
+                    </div>
 
                     <a
                         href="https://cal.com/david.nabeiro/novagate.30min"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+                        <button className="mt-8 relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
           shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group
           text-lg font-semibold overflow-hidden bg-black/80 backdrop-blur-sm">
 
@@ -66,7 +81,7 @@ export default function Automations() {
                                 <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
                                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                                    GET STARTED
+                                    {t('Get Started')}
                                 </span>
                             </div>
 
@@ -79,50 +94,46 @@ export default function Automations() {
             </section>
 
             <section className="text-gray-300 p-8 max-w-4xl mx-auto pt-20">
-                <h2 className="text-2xl font-bold text-blue-400 mb-4">What is it?</h2>
-                <p className="mb-6">
-                    Automations are systematic processes that execute repetitive tasks with precision and speed. Leveraging software and technology, they streamline workflows, reduce manual intervention, and ensure consistency.
-                </p>
-                <p className="mb-6">
-                    By automating routine operations, businesses can enhance efficiency, minimize errors, and focus on strategic growth, all while maintaining high standards of productivity and quality.
-                </p>
+                <h2 className="text-2xl font-bold text-blue-400 mb-4">{t('What is it')}</h2>
+                <p className="mb-6">{t('Automations Description 1')}</p>
+                <p className="mb-6">{t('Automations Description 2')}</p>
             </section>
 
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
-                        Use cases
+                        {t('Use cases')}
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={Workflow}
-                            title="Process Automation"
-                            description="Automate complex business processes to reduce manual intervention and improve operational efficiency."
+                            title={t('Process Automation')}
+                            description={t('Process Automation Description')}
                         />
                         <ServiceCard
                             icon={ListChecks}
-                            title="Task Automation"
-                            description="Automate routine tasks to save time, minimize errors, and allow your team to focus on strategic initiatives."
+                            title={t('Task Automation')}
+                            description={t('Task Automation Description')}
                         />
                         <ServiceCard
                             icon={BrainCircuit}
-                            title="Decision Automation"
-                            description="Implement automated decision-making systems to streamline workflows and enhance the consistency of business operations."
+                            title={t('Decision Automation')}
+                            description={t('Decision Automation Description')}
                         />
                         <ServiceCard
                             icon={Database}
-                            title="Data Integration"
-                            description="Automatically collect, synchronize, and integrate data across various platforms to ensure accurate and up-to-date information flow."
+                            title={t('Data Integration')}
+                            description={t('Data Integration Description')}
                         />
                         <ServiceCard
                             icon={Activity}
-                            title="Data Monitoring"
-                            description="Set up automated monitoring systems to track data changes and generate real-time alerts for quick, informed responses."
+                            title={t('Data Monitoring')}
+                            description={t('Data Monitoring Description')}
                         />
                         <ServiceCard
                             icon={FileText}
-                            title="Document Automation"
-                            description="Automate document generation, processing, and management to enhance compliance and reduce administrative workload."
+                            title={t('Document Automation')}
+                            description={t('Document Automation Description')}
                         />
                     </div>
                 </div>

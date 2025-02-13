@@ -2,6 +2,9 @@
 import ServiceCard from '@/components/cards';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
+import { useTranslations } from 'next-intl';
+import { Check } from 'lucide-react';
+
 import {
     UserCog,  // Internal Support
     Star,  // Customer Reviews and Feedback
@@ -12,6 +15,7 @@ import {
 } from "lucide-react";
 
 export default function Chatbots() {
+    const t = useTranslations('common');
 
     return (
         <div>
@@ -20,7 +24,7 @@ export default function Chatbots() {
                     {/* Small Top Text */}
                     <div className="space-y-2">
                         <p className="text-gray-300 text-lg font-light tracking-widest">
-                            Relegate repetitive inquiries. Information acessibility made instant.
+                            {t('Relegate repetitive inquiries')}
                         </p>
                     </div>
 
@@ -28,9 +32,7 @@ export default function Chatbots() {
                     <div className="relative group">
                         <div className="flex items-center justify-center">
                             <TypeAnimation
-                                sequence={[
-                                    '> AI Chatbots',
-                                ]}
+                                sequence={[t('AI Chatbots')]}
                                 speed={50}
                                 cursor={false}
                                 className="text-4xl md:text-6xl font-bold text-blue-400"
@@ -42,19 +44,32 @@ export default function Chatbots() {
                         </div>
                     </div>
 
-                    {/* Description Text */}
-                    <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">Save time
-                        Save money on expensive customer support teams
-                        Never lose a lead again
-                        Increase customer satisfation
-                    </p>
+
+                    <div className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto text-left leading-relaxed space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Save time')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p> {t('Save money')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p> {t('Never lose a lead')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Increase customer satisfaction')}</p>
+                        </div>
+                    </div>
 
                     <a
                         href="https://cal.com/david.nabeiro/novagate.30min"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+                        <button className="mt-8 relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
           shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group
           text-lg font-semibold overflow-hidden bg-black/80 backdrop-blur-sm">
 
@@ -66,7 +81,7 @@ export default function Chatbots() {
                                 <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
                                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                                    GET STARTED
+                                    {t('Get Started')}
                                 </span>
                             </div>
 
@@ -79,50 +94,46 @@ export default function Chatbots() {
             </section>
 
             <section className="text-gray-300 p-8 max-w-4xl mx-auto pt-20">
-                <h2 className="text-2xl font-bold text-blue-400 mb-4">What is it?</h2>
-                <p className="mb-6">
-                    AI Chatbots are advanced systems that interact with users via chat, providing natural, human-like conversations.
-                </p>
-                <p className="mb-6">
-                    They use natural language processing and machine learning to understand and respond to text enquiries, automate tasks, and integrate with various systems, enhancing customer experience and operational efficiency.
-                </p>
+                <h2 className="text-2xl font-bold text-blue-400 mb-4">{t('What is it')}</h2>
+                <p className="mb-6">{t('Chatbots Description 1')}</p>
+                <p className="mb-6">{t('Chatbots Description 2')}</p>
             </section>
 
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
-                        Use cases
+                        {t('Use cases')}
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={UserCog}
-                            title="Internal Support"
-                            description="Assisting employees with IT, HR, and creative tasks. Chatbots work with AI agents to draft documents, generate reports, transfer data, and more"
+                            title={t('Internal Support')}
+                            description={t('Internal Support Description')}
                         />
                         <ServiceCard
                             icon={Star}
-                            title="Customer Reviews and Feedback"
-                            description="Gathering and analyzing customer reviews and feedback to gain insights and improve products and services"
+                            title={t('Customer Reviews')}
+                            description={t('Customer Reviews Description')}
                         />
                         <ServiceCard
                             icon={Package}
-                            title="Order Processing"
-                            description="Assisting customers in placing orders, tracking deliveries, and handling returns and exchanges"
+                            title={t('Order Processing')}
+                            description={t('Order Processing Description')}
                         />
                         <ServiceCard
                             icon={CalendarCheck}
-                            title="Booking and Reservations"
-                            description="Automating the booking process for hotels, restaurants, and events, reducing manual workload and errors"
+                            title={t('Booking and Reservations')}
+                            description={t('Booking and Reservations Description')}
                         />
                         <ServiceCard
                             icon={MessageCircle}
-                            title="Social Media Management"
-                            description="Responding to customer inquiries and comments on social media platforms, maintaining active engagement"
+                            title={t('Social Media Management')}
+                            description={t('Social Media Management Description')}
                         />
                         <ServiceCard
                             icon={Handshake}
-                            title="Sales Support"
-                            description="Engaging with website visitors, answering product questions, and generating leads for the sales team"
+                            title={t('Sales Support')}
+                            description={t('Sales Support Description')}
                         />
                     </div>
                 </div>

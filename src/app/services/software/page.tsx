@@ -2,9 +2,20 @@
 import ServiceCard from '@/components/cards';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
-import { Rocket, Settings2, ArrowDownUp, Link, Activity, UserCog } from "lucide-react";
+import { useTranslations } from 'next-intl';
+import { Check } from 'lucide-react';
+
+import {
+    Rocket, // Rapid Application Development
+    Settings2, // Custom Business Solutions
+    ArrowDownUp, // Workflow Optimization
+    Link, // Integration with Legacy Systems
+    Activity, // Real-time Data Applications
+    UserCog // User-driven Modifications
+} from "lucide-react";
 
 export default function Software() {
+    const t = useTranslations('common');
 
     return (
         <div>
@@ -13,7 +24,7 @@ export default function Software() {
                     {/* Small Top Text */}
                     <div className="space-y-2">
                         <p className="text-gray-300 text-lg font-light tracking-widest">
-                            Faster development. Better final product.
+                            {t('Faster development')}
                         </p>
                     </div>
 
@@ -21,9 +32,7 @@ export default function Software() {
                     <div className="relative group">
                         <div className="flex items-center justify-center">
                             <TypeAnimation
-                                sequence={[
-                                    '> Smart Software Development',
-                                ]}
+                                sequence={[t('Smart Software Development')]}
                                 speed={50}
                                 cursor={false}
                                 className="text-4xl md:text-6xl font-bold text-blue-400"
@@ -34,20 +43,37 @@ export default function Software() {
                             />
                         </div>
                     </div>
-
-                    {/* Description Text */}
-                    <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">Accelerate development with rapid, iterative cycles
-                        Reduce costs and maximize ROI with efficient solutions
-                        Empower non-developers to make quick updates easily
-                        Scale effortlessly and convert to code when neededDon't have any idea of how we can help you? Get a Free custom plan for how AI and automations can improve your business
-                    </p>
+                    
+                    
+                    <div className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto text-left leading-relaxed space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Accelerate development')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p> {t('Reduce costs')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Empower non-developers')}}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Scale effortlessly')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Custom AI Plan')}</p>
+                        </div>
+                    </div>
 
                     <a
                         href="https://cal.com/david.nabeiro/novagate.30min"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+                        <button className="mt-8 relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
           shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group
           text-lg font-semibold overflow-hidden bg-black/80 backdrop-blur-sm">
 
@@ -59,7 +85,7 @@ export default function Software() {
                                 <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
                                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                                    GET STARTED
+                                    {t('Get Started')}
                                 </span>
                             </div>
 
@@ -72,16 +98,10 @@ export default function Software() {
             </section>
 
             <section className="text-gray-300 p-8 max-w-4xl mx-auto pt-20">
-                <h2 className="text-2xl font-bold text-blue-400 mb-4">What is it?</h2>
-                <p className="mb-6">
-                    Our software development approach enables rapid application creation with minimal manual coding.
-                </p>
-                <p className="mb-6">
-                    By utilizing intuitive interfaces and reusable components, we simplify complex processes, significantly reduce development time, and empower teams to design and adapt applications efficiently.
-                </p>
-                <p className="mb-6">
-                    This methodology fosters innovation, enhances collaboration, and ensures businesses can respond quickly to evolving needs while maintaining robust flexibility and scalability.
-                </p>
+                <h2 className="text-2xl font-bold text-blue-400 mb-4">{t('What is it')}</h2>
+                <p className="mb-6">{t('Software Description 1')}</p>
+                <p className="mb-6">{t('Software Description 2')}</p>
+                <p className="mb-6">{t('Software Description 3')}</p>
                 <div className="relative w-full pt-[56.25%] rounded-lg overflow-hidden border border-blue-500/20 shadow-lg shadow-blue-500/50">
                     <iframe
                         className="absolute top-0 left-0 w-full h-full"
@@ -97,38 +117,38 @@ export default function Software() {
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
-                        Use cases
+                        {t('Use cases')}
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={Rocket}
-                            title="Rapid Application Development"
-                            description="Quickly build and deploy applications, enabling faster time-to-market and iterative improvements."
+                            title={t('Rapid Application Development')}
+                            description={t('Rapid Application Development Description')}
                         />
                         <ServiceCard
                             icon={Settings2}
-                            title="Custom Business Solutions"
-                            description="Create tailored applications that meet unique business needs without extensive development resources.  "
+                            title={t('Custom Business Solutions')}
+                            description={t('Custom Business Solutions Description')}
                         />
                         <ServiceCard
                             icon={ArrowDownUp}
-                            title="Workflow Optimization"
-                            description="Design and automate complex workflows with visual tools, enhancing process efficiency and collaboration."
+                            title={t('Workflow Optimization')}
+                            description={t('Workflow Optimization Description')}
                         />
                         <ServiceCard
                             icon={Link}
-                            title="Integration with Legacy Systems"
-                            description="Easily integrate new applications with existing systems, ensuring seamless data flow and process continuity."
+                            title={t('Integration with Legacy Systems')}
+                            description={t('Integration with Legacy Systems Description')}
                         />
                         <ServiceCard
                             icon={Activity}
-                            title="Real-time Data Applications"
-                            description="Develop applications that provide real-time data insights and dashboards for better decision-making and visibility."
+                            title={t('Real-time Data Applications')}
+                            description={t('Real-time Data Applications Description')}
                         />
                         <ServiceCard
                             icon={UserCog}
-                            title="User-driven Modifications"
-                            description="Empower business users to make adjustments and updates to applications without technical expertise."
+                            title={t('User-driven Modifications')}
+                            description={t('User-driven Modifications Description')}
                         />
                     </div>
                 </div>

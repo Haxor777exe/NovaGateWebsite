@@ -18,6 +18,8 @@ import {
   Phone
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import path from "path";
 
 const ProcessStep = ({
   number,
@@ -63,19 +65,27 @@ const ProcessStep = ({
   </div>
 );
 
-const ServiceCard = ({ icon: Icon, title, description }: { icon: any, title: string, description: string }) => (
-  <div className="relative p-6  rounded-lg border border-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/60 transition-all duration-300 group">
-    <div className="absolute inset-0 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-all duration-300"></div>
-    <Icon className="w-12 h-12 text-blue-400 mb-4 group-hover:text-white transition-all duration-300" />
-    <h3 className="text-xl font-mono text-white mb-2">{title}</h3>
-    <p className="text-gray-200">{description}</p>
-    <button className="mt-4 text-blue-400 hover:text-white font-mono text-sm transition-colors duration-300">Learn More →</button>
-  </div>
-);
-
 
 export default function Home() {
   const t = useTranslations('common');
+  const router = useRouter();
+
+  const ServiceCard = ({ icon: Icon, title, description, path }: { icon: any, title: string, description: string, path: string }) => (
+    <div className="relative p-6 rounded-lg border border-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/60 transition-all duration-300 group">
+      <div className="absolute inset-0 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-all duration-300"></div>
+      <div className="relative z-10">
+        <Icon className="w-12 h-12 text-blue-400 mb-4 group-hover:text-white transition-all duration-300" />
+        <h3 className="text-xl font-mono text-white mb-2">{title}</h3>
+        <p className="text-gray-200">{description}</p>
+        <button 
+          className="mt-4 text-blue-400 hover:text-white font-mono text-sm transition-colors duration-300"
+          onClick={() => router.push(path)}
+        >
+          Learn More →
+        </button>
+      </div>
+    </div>
+  );
 
 
 
@@ -116,27 +126,32 @@ export default function Home() {
             {t('Dont have any idea of how we can help you?')}
           </p>
 
-          {/* Enhanced Matrix Button */}
-          <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+          <a
+            href="https://cal.com/david.nabeiro/novagate.30min"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="mt-8 relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
           shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group
           text-lg font-semibold overflow-hidden bg-black/80 backdrop-blur-sm">
 
-            {/* Grid overlay using CSS instead of SVG */}
-            <div className="absolute inset-0 bg-[radial-gradient(rgba(96,165,250,0.1) 1px,transparent 1px)] bg-[size:20px_20px]" />
+              {/* Grid overlay using CSS instead of SVG */}
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(96,165,250,0.1) 1px,transparent 1px)] bg-[size:20px_20px]" />
 
-            {/* Button content */}
-            <div className="relative flex items-center justify-center gap-2">
-              <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
+              {/* Button content */}
+              <div className="relative flex items-center justify-center gap-2">
+                <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                {t('INITIATE_FREE_PLAN')}
-              </span>
-            </div>
+                  {t('INITIATE_FREE_PLAN')}
+                </span>
+              </div>
 
-            {/* Scanning line effect */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent 
+              {/* Scanning line effect */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent 
   opacity-0 group-hover:opacity-100 animate-scan" />
-          </button>
+            </button>
+          </a>
         </div>
       </section>
 
@@ -144,7 +159,7 @@ export default function Home() {
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <p className="text-gray-300 text-lg font-light tracking-widest text-center mb-2">
-          {t('How our process works')}
+            {t('How our process works')}
           </p>
 
           <h2 className="text-3xl font-mono text-blue-400 mb-16 text-center mt-4 relative">
@@ -198,26 +213,31 @@ export default function Home() {
               icon={Brain}
               title={t('AI Voicebots')}
               description={t('AI Content')}
+              path="/services/voicebot"
             />
             <ServiceCard
               icon={MessageSquare}
               title={t('AI Chatbots')}
               description={t('AI Chat Content')}
+              path="/services/chatbot"
             />
             <ServiceCard
               icon={Bot}
               title={t('AI Agents')}
               description={t('AI Agents Content')}
+              path="/services/agents"
             />
             <ServiceCard
               icon={Cog}
               title={t('Automations')}
               description={t('Automations Content')}
+              path="/services/automations"
             />
             <ServiceCard
               icon={Code2}
               title={t('Smart Software Development')}
               description={t('Smart Software Development Content')}
+              path="/services/software"
             />
           </div>
         </div>

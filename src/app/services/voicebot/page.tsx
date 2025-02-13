@@ -4,17 +4,21 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Vapi from "@vapi-ai/web";
 import { TypeAnimation } from 'react-type-animation';
+import { useTranslations } from 'next-intl';
+import { Check } from 'lucide-react';
+
 import {
-    Headset,  // Customer Service and Technical Support
-    CalendarCheck,  // Appointment Scheduling
-    Package,  // Order Processing
-    ClipboardList,  // Surveys and Feedback Collection
-    Users,  // Lead Qualification
-    PhoneCall  // Outbound Calls
+    Headset, // Customer Service and Technical Support
+    CalendarCheck, // Appointment Scheduling
+    Package, // Order Processing
+    ClipboardList, // Surveys and Feedback Collection
+    Users, // Lead Qualification
+    PhoneCall // Outbound Calls
 } from "lucide-react";
 
-
 export default function Voicebots() {
+    const t = useTranslations('common');
+
     const [vapi] = useState(
         new Vapi('d85769bc-9daa-4802-8326-6eb82a6b204d') // API Key
     );
@@ -57,20 +61,16 @@ export default function Voicebots() {
         <div>
             <section className="flex items-center justify-center pt-20 px-4">
                 <div className="max-w-4xl text-center space-y-8">
-                    {/* Small Top Text */}
                     <div className="space-y-2">
                         <p className="text-gray-300 text-lg font-light tracking-widest">
-                            Relegate picking up the phone. Never miss a call.
+                            {t('Relegate picking up the phone')}
                         </p>
                     </div>
 
-                    {/* Main Headline with Console-style */}
                     <div className="relative group">
                         <div className="flex items-center justify-center">
                             <TypeAnimation
-                                sequence={[
-                                    '> AI Voicebots',
-                                ]}
+                                sequence={[t('> AI Voicebots')]}
                                 speed={50}
                                 cursor={false}
                                 className="text-4xl md:text-6xl font-bold text-blue-400"
@@ -82,37 +82,46 @@ export default function Voicebots() {
                         </div>
                     </div>
 
-                    {/* Description Text */}
-                    <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">Accelerate development with rapid, iterative cycles
-                        Save time
-                        Save money on expensive customer support teams
-                        Never lose a lead again
-                        Increase customer satisfation
-                        ‍
-                    </p>
+                    <div className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto text-left leading-relaxed space-y-4">
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Accelerate development')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Save time')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Save money')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Never lose a lead')}</p>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
+                            <p>{t('Increase customer satisfaction')}</p>
+                        </div>
+                    </div>
+
 
                     <a
                         href="https://cal.com/david.nabeiro/novagate.30min"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <button className="relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
+                        <button className="mt-8 relative px-8 py-4 rounded-lg border-2 border-blue-400/50 hover:border-blue-400 transition-all duration-300 
           shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 group
           text-lg font-semibold overflow-hidden bg-black/80 backdrop-blur-sm">
-
-                            {/* Grid overlay using CSS instead of SVG */}
                             <div className="absolute inset-0 bg-[radial-gradient(rgba(96,165,250,0.1) 1px,transparent 1px)] bg-[size:20px_20px]" />
-
-                            {/* Button content */}
                             <div className="relative flex items-center justify-center gap-2">
                                 <div className="h-2 w-2 bg-blue-400 rounded-full animate-pulse" />
                                 <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent 
     font-mono tracking-widest text-sm md:text-base">
-                                    GET STARTED
+                                    {t('Get Started')}
                                 </span>
                             </div>
-
-                            {/* Scanning line effect */}
                             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent 
   opacity-0 group-hover:opacity-100 animate-scan" />
                         </button>
@@ -207,38 +216,38 @@ export default function Voicebots() {
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">
-                        Use cases
+                        {t('Use cases')}
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch auto-rows-fr">
                         <ServiceCard
                             icon={Headset}
-                            title="Customer Service and Technical Support"
-                            description="Handling inbound customer inquiries, providing instant responses, and resolving common technical issues without human intervention"
+                            title={t('Customer Service and Technical Support')}
+                            description={t('Customer Service Description')}
                         />
                         <ServiceCard
                             icon={CalendarCheck}
-                            title="Appointment Scheduling"
-                            description="Automating appointment bookings and reminders for healthcare, beauty salons, and other service-based industries"
+                            title={t('Appointment Scheduling')}
+                            description={t('Appointment Scheduling Description')}
                         />
                         <ServiceCard
                             icon={Package}
-                            title="Order Processing"
-                            description="Assisting customers in placing orders, tracking deliveries, and handling returns and exchanges"
+                            title={t('Order Processing')}
+                            description={t('Order Processing Description')}
                         />
                         <ServiceCard
                             icon={ClipboardList}
-                            title="Surveys and Feedback Collection"
-                            description="Conducting automated surveys to gather customer feedback and insights on products and services"
+                            title={t('Surveys and Feedback Collection')}
+                            description={t('Surveys Description')}
                         />
                         <ServiceCard
                             icon={Users}
-                            title="Lead Qualification"
-                            description="Engaging potential customers, collecting information, and qualifying leads for the sales team to follow up"
+                            title={t('Lead Qualification')}
+                            description={t('Lead Qualification Description')}
                         />
                         <ServiceCard
                             icon={PhoneCall}
-                            title="Outbound Calls"
-                            description="Conducting outreach to new leads, generating leads, and following up on contact information provided by potential customers"
+                            title={t('Outbound Calls')}
+                            description={t('Outbound Calls Description')}
                         />
                     </div>
                 </div>

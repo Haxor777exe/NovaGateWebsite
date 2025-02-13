@@ -100,10 +100,10 @@ const Footer = () => {
                     >
                         <h3 className="font-mono text-blue-400 mb-4"> {t('Network')}</h3>
                         <div className="flex space-x-4 justify-center md:justify-start">
-                            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
+                            <a href="https://www.instagram.com/novagate.solutions/" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
                                 <Instagram className="w-6 h-6" />
                             </a>
-                            <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
+                            <a href="https://www.linkedin.com/company/novagate-solutions" className="text-gray-300 hover:text-blue-400 transition-colors transform hover:scale-110 duration-200">
                                 <Linkedin className="w-6 h-6" />
                             </a>
                         </div>

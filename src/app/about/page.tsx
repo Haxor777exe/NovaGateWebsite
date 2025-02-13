@@ -28,7 +28,7 @@ export default function AboutPage() {
             <section className="relative pt-20 px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <TypeAnimation
-                        sequence={['About Us']}
+                        sequence={[ t('About the company')  ]}
                         speed={50}
                         cursor={false}
                         className="text-4xl md:text-6xl font-bold text-blue-400"
