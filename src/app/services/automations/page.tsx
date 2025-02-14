@@ -56,7 +56,7 @@ export default function Automations() {
                         </div>
                         <div className="flex items-center gap-3">
                             <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
-                            <p>{t('Empower non-developers')}}</p>
+                            <p>{t('Empower non-developers')}</p>
                         </div>
                         <div className="flex items-center gap-3">
                             <Check className="text-blue-500 w-6 h-6 flex-shrink-0" />
