@@ -134,17 +134,14 @@ export default function Voicebots() {
                     {/* Explanation Section */}
                     <div className="mb-8 md:mb-12 space-y-4 md:space-y-6">
                         <h2 className="text-2xl md:text-3xl font-bold text-blue-400 mb-4 md:mb-6 relative">
-                            AI Voice Interaction System
+                        {t('AI Voice Interaction System')}
                             <span className="absolute bottom-0 left-0 w-16 md:w-24 h-1 bg-blue-500/50"></span>
                         </h2>
 
                         <div className="space-y-3 md:space-y-4">
                             <p className="text-gray-300 text-base md:text-lg leading-relaxed">
-                                <span className="text-blue-400 font-semibold">What is it?</span><br />
-                                Our AI Voicebots are neural networks that engage in natural, human-like dialogue.
-                                Using advanced speech recognition and deep learning, they comprehend context,
-                                manage complex queries, and integrate with enterprise systems - revolutionizing
-                                customer interactions through voice-first AI solutions.
+                                <span className="text-blue-400 font-semibold">{t('What is it')}</span><br />
+                                {t('Voicebots Description Big')}
                             </p>
 
                             <div className="border-l-4 border-blue-500/30 pl-3 md:pl-4 ml-1 md:ml-2 mt-4 md:mt-6">
@@ -154,19 +151,19 @@ export default function Voicebots() {
                                         <svg className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                                         </svg>
-                                        Real-time speech synthesis & analysis
+                                        {t('Real-time speech synthesis')}
                                     </li>
                                     <li className="flex items-center gap-2 md:gap-3">
                                         <svg className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                                         </svg>
-                                        Contextual conversation memory
+                                        {t('Contextual conversation memory')}
                                     </li>
                                     <li className="flex items-center gap-2 md:gap-3">
                                         <svg className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
                                         </svg>
-                                        Multi-platform API integration
+                                        {t('Multi-platform API integration')}
                                     </li>
                                 </ul>
                             </div>
@@ -176,7 +173,7 @@ export default function Voicebots() {
                     {/* Interactive Demo Section */}
                     <div className="bg-blue-500/10 p-4 md:p-6 rounded-lg md:rounded-xl border border-blue-500">
                         <h3 className="text-blue-400 text-lg md:text-xl font-bold mb-4 md:mb-6">
-                            <span className="border-b-2 border-blue-500/40 pb-1">Experience Next-Gen Voice AI</span>
+                            <span className="border-b-2 border-blue-500/40 pb-1"> {t('Experience Next-Gen Voice AI')}</span>
                         </h3>
 
                         <div className="space-y-3 md:space-y-4">

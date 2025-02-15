@@ -149,6 +149,12 @@
   "Lead Qualification": "Lead Qualification",
   "Lead Qualification Description": "Engaging potential customers, collecting information, and qualifying leads for the sales team to follow up.",
   "Outbound Calls": "Outbound Calls",
-  "Outbound Calls Description": "Conducting outreach to new leads, generating leads, and following up on contact information provided by potential customers."
+  "Outbound Calls Description": "Conducting outreach to new leads, generating leads, and following up on contact information provided by potential customers.",
+
+   " AI Voice Interaction System": "AI Voice Interaction System",
+   "Voicebots Description Big": "Our AI Voicebots are neural networks that engage in natural, human-like dialogue. Using advanced speech recognition and deep learning, they comprehend context, manage complex queries, and integrate with enterprise systems - revolutionizing customer interactions through voice-first AI solutions."
+
+
+
   }
 }
