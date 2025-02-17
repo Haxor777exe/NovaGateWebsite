@@ -59,7 +59,7 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">{t('Meet Our Founders')}</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                         {founders.map((founder) => (
                             <div key={founder.name} className="group bg-[#0a0f1f] p-6 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
                                 <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/50">
@@ -116,6 +116,12 @@ const founders = [
         title: "Founder & COO",
         image: "https://media.licdn.com/dms/image/v2/D5603AQFSthgk-1ts9g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712600959823?e=1744848000&v=beta&t=QlYj0FR6XEDTo-_F_xTdUgKbF-71x2dN-1QtHuVRjH0",
         bio: "No-code Developer and Systems Engineer"
+    },
+    {
+        name: "Rune josefsen",
+        title: "CSO",
+        image: "https://i.postimg.cc/2qmRmWvZ/temp-Image-MHxp7-A.avif",
+        bio: "Mentor and Chief Strategy Officer"
     }
 ];
 
