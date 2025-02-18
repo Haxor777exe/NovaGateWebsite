@@ -91,8 +91,6 @@
     "Document Automation": "Document Automation",
     "Document Automation Description": "Automate document generation, processing, and management to enhance compliance and reduce administrative workload.",
     "Relegate repetitive inquiries": "Relegate repetitive inquiries. Information accessibility made instant.",
-
-
     "Save time": "Save time",
     "Save money": "Save money on expensive customer support teams",
     "Never lose a lead": "Never lose a lead again",
@@ -111,7 +109,6 @@
     "Social Media Management Description": "Responding to customer inquiries and comments on social media platforms, maintaining active engagement.",
     "Sales Support": "Sales Support",
     "Sales Support Description": "Engaging with website visitors, answering product questions, and generating leads for the sales team.",
-
     "Faster development": "Faster development. Better final product.",
     "Custom AI Plan": "Don't have any idea of how we can help you? Get a Free custom plan for how AI and automations can improve your business",
     "Software Description 1": "Our software development approach enables rapid application creation with minimal manual coding.",
@@ -129,32 +126,26 @@
     "Real-time Data Applications Description": "Develop applications that provide real-time data insights and dashboards for better decision-making and visibility.",
     "User-driven Modifications": "User-driven Modifications",
     "User-driven Modifications Description": "Empower business users to make adjustments and updates to applications without technical expertise.",
-
     "Relegate picking up the phone": "Relegate picking up the phone. Never miss a call.",
-  "AI Voice Interaction System": "AI Voice Interaction System",
-  "Voicebots Description 1": "Our AI Voicebots are neural networks that engage in natural, human-like dialogue.",
-  "Voicebots Description 2": "Using advanced speech recognition and deep learning, they comprehend context, manage complex queries, and integrate with enterprise systems - revolutionizing customer interactions through voice-first AI solutions.",
-  "Core Capabilities": "Core Capabilities:",
-  "Real-time speech synthesis": "Real-time speech synthesis & analysis",
-  "Contextual conversation memory": "Contextual conversation memory",
-  "Multi-platform API integration": "Multi-platform API integration",
-  "Experience Next-Gen Voice AI": "Experience Next-Gen Voice AI",
-
-  "Customer Service and Technical Support": "Customer Service and Technical Support",
-  "Customer Service Description": "Handling inbound customer inquiries, providing instant responses, and resolving common technical issues without human intervention.",
-  "Appointment Scheduling": "Appointment Scheduling",
-  "Appointment Scheduling Description": "Automating appointment bookings and reminders for healthcare, beauty salons, and other service-based industries.",
-  "Surveys and Feedback Collection": "Surveys and Feedback Collection",
-  "Surveys Description": "Conducting automated surveys to gather customer feedback and insights on products and services.",
-  "Lead Qualification": "Lead Qualification",
-  "Lead Qualification Description": "Engaging potential customers, collecting information, and qualifying leads for the sales team to follow up.",
-  "Outbound Calls": "Outbound Calls",
-  "Outbound Calls Description": "Conducting outreach to new leads, generating leads, and following up on contact information provided by potential customers.",
-
-   " AI Voice Interaction System": "AI Voice Interaction System",
-   "Voicebots Description Big": "Our AI Voicebots are neural networks that engage in natural, human-like dialogue. Using advanced speech recognition and deep learning, they comprehend context, manage complex queries, and integrate with enterprise systems - revolutionizing customer interactions through voice-first AI solutions."
-
-
-
+    "AI Voice Interaction System": "AI Voice Interaction System",
+    "Voicebots Description 1": "Our AI Voicebots are neural networks that engage in natural, human-like dialogue.",
+    "Voicebots Description 2": "Using advanced speech recognition and deep learning, they comprehend context, manage complex queries, and integrate with enterprise systems - revolutionizing customer interactions through voice-first AI solutions.",
+    "Core Capabilities": "Core Capabilities:",
+    "Real-time speech synthesis": "Real-time speech synthesis & analysis",
+    "Contextual conversation memory": "Contextual conversation memory",
+    "Multi-platform API integration": "Multi-platform API integration",
+    "Experience Next-Gen Voice AI": "Experience Next-Gen Voice AI",
+    "Customer Service and Technical Support": "Customer Service and Technical Support",
+    "Customer Service Description": "Handling inbound customer inquiries, providing instant responses, and resolving common technical issues without human intervention.",
+    "Appointment Scheduling": "Appointment Scheduling",
+    "Appointment Scheduling Description": "Automating appointment bookings and reminders for healthcare, beauty salons, and other service-based industries.",
+    "Surveys and Feedback Collection": "Surveys and Feedback Collection",
+    "Surveys Description": "Conducting automated surveys to gather customer feedback and insights on products and services.",
+    "Lead Qualification": "Lead Qualification",
+    "Lead Qualification Description": "Engaging potential customers, collecting information, and qualifying leads for the sales team to follow up.",
+    "Outbound Calls": "Outbound Calls",
+    "Outbound Calls Description": "Conducting outreach to new leads, generating leads, and following up on contact information provided by potential customers.",
+    " AI Voice Interaction System": "AI Voice Interaction System",
+    "Voicebots Description Big": "Os nossos Voicebots de IA são redes neurais que participam em diálogos naturais e semelhantes aos humanos. Utilizando reconhecimento de voz avançado e aprendizagem profunda, compreendem o contexto, gerem consultas complexas e integram-se com sistemas empresariais – revolucionando as interações com os clientes através de soluções de IA orientadas para a voz."
   }
 }

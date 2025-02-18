@@ -3,10 +3,12 @@ import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { Pill } from "lucide-react";
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 const CareersPage = () => {
     const t = useTranslations('common');
-    
+    const router = useRouter();
+
     const jobs = [
         {
             title: "Software Developer",
@@ -34,7 +36,7 @@ const CareersPage = () => {
                             <div className="flex items-center justify-center">
                                 <TypeAnimation
                                     sequence={[
-                                        t('We are hiring')  
+                                        t('We are hiring')
                                     ]}
                                     speed={50}
                                     cursor={false}
@@ -48,7 +50,7 @@ const CareersPage = () => {
                         </div>
 
                         <p className="text-gray-300 text-lg mb-12">
-                        {t('Philospohy')}  
+                            {t('Philospohy')}
                         </p>
 
                     </div>
@@ -86,15 +88,25 @@ const CareersPage = () => {
                                         </span>
                                     </div>
                                     <div className="flex space-x-4 mt-6">
-                                        {/* Apply Now - Red Icon Pill */}
-                                        <button className="flex items-center px-6 py-2 bg-red-500/30 text-red-300 rounded-full hover:bg-red-500/50 transition-all">
-                                            <Pill className="w-5 h-5" />
-                                        </button>
+                                        <a
+                                            href="https://cal.com/david.nabeiro/novagate.30min"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <button className="flex items-center px-6 py-2 bg-red-500/30 text-red-300 rounded-full hover:bg-red-500/50 transition-all">
+                                                 <Pill className="w-5 h-5" />
+                                            </button>
+                                        </a>
 
-                                        {/* Skip - Blue Solid Pill */}
-                                        <button className="flex items-center px-6 py-2 border border-blue-500/50 text-blue-300 rounded-full hover:border-blue-500/60 hover:bg-blue-500/20 transition-all">
-                                            <Pill className="w-5 h-5" />
-                                        </button>
+                                        <a
+                                            href="https://cal.com/david.nabeiro/novagate.30min"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <button className="flex items-center px-6 py-2 border border-blue-500/50 text-blue-300 rounded-full hover:border-blue-500/60 hover:bg-blue-500/20 transition-all">
+                                                <Pill className="w-5 h-5" />
+                                            </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
