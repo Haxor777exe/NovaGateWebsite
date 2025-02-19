@@ -77,7 +77,7 @@ export default function Home() {
         <Icon className="w-12 h-12 text-blue-400 mb-4 group-hover:text-white transition-all duration-300" />
         <h3 className="text-xl font-mono text-white mb-2">{title}</h3>
         <p className="text-gray-200">{description}</p>
-        <button 
+        <button
           className="mt-4 text-blue-400 hover:text-white font-mono text-sm transition-colors duration-300"
           onClick={() => router.push(path)}
         >
@@ -204,6 +204,32 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl text-blue-400 font-mono mb-12 text-center">
+            {t('Trusted by Leading Innovators')}
+          </h1>
+
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            {companies.map((company) => (
+              <div
+                key={company.id}
+                className="group p-6 bg-black/40 rounded-lg border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:bg-blue-500/10"
+              >
+                <div className="relative h-12 w-full flex items-center justify-center">
+                  <img
+                    src={company.image}
+                    alt={company.alt}
+                    className="h-full w-full object-contain grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -245,3 +271,47 @@ export default function Home() {
     </div>
   );
 }
+
+
+const companies = [
+  {
+    id: 1,
+    image: "/images/hub55.jpeg",
+    alt: "Hub 55 ."
+  },
+  {
+    id: 2,
+    image: "/images/gym.jpeg",
+    alt: "gym"
+  },
+  {
+    id: 3,
+    image: "/images/balance.jpeg",
+    alt: "balance"
+  },
+  {
+    id: 4,
+    image: "/images/cbs.jpeg",
+    alt: "Copenhagen Business School"
+  },
+  {
+    id: 5,
+    image: "/images/skylab.jpeg",
+    alt: "Dtu Skylab"
+  },
+  {
+    id: 6,
+    image: "/images/folques.jpeg",
+    alt: "Folques"
+  },
+  {
+    id: 7,
+    image: "/images/cse.jpeg",
+    alt: "Copenhagen School of Entrepreneurship"
+  },
+  {
+    id: 8,
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzyfxIZRptC8cDXp3CnE7YnEEML49-QJvfuQ&s",
+    alt: "Denmark Technical University"
+  },
+];
