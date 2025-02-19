@@ -210,7 +210,7 @@ export default function Home() {
             {t('Trusted by Leading Innovators')}
           </h1>
 
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
             {companies.map((company) => (
               <div
                 key={company.id}
@@ -314,4 +314,14 @@ const companies = [
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzyfxIZRptC8cDXp3CnE7YnEEML49-QJvfuQ&s",
     alt: "Denmark Technical University"
   },
+  {
+    id: 9,
+    image: "/images/Soof.png",
+    alt: "Soof"
+  },
+  {
+    id: 10,
+    image: "https://www.eu-startups.com/wp-content/uploads/2024/06/download-102.png",
+    alt: "Sens Vue"
+  }
 ];

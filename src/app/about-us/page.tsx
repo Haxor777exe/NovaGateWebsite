@@ -135,7 +135,7 @@ const founders = [
         title: "CSO",
         linkedin: "https://www.linkedin.com/in/runejosefsen/",
         image: "https://i.ibb.co/ZnPSKSM/Rune-Profilbillede.jpg",
-        bio: "Mentor and Chief Strategy Officer"
+        bio: "Process improvement and Chief Strategy Officer"
     }
 ];
 
