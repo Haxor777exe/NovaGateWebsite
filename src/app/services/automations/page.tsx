@@ -32,7 +32,7 @@ export default function Automations() {
                     <div className="relative group">
                         <div className="flex items-center justify-center">
                             <TypeAnimation
-                                sequence={[t('Automations')]}
+                                sequence={[ '> ' + t('Automations')]}
                                 speed={50}
                                 cursor={false}
                                 className="text-4xl md:text-6xl font-bold text-blue-400"

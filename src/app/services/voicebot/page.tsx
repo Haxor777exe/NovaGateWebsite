@@ -70,7 +70,7 @@ export default function Voicebots() {
                     <div className="relative group">
                         <div className="flex items-center justify-center">
                             <TypeAnimation
-                                sequence={[t('> AI Voicebots')]}
+                                sequence={['> ' + t('> AI Voicebots')]}
                                 speed={50}
                                 cursor={false}
                                 className="text-4xl md:text-6xl font-bold text-blue-400"
