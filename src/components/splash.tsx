@@ -70,15 +70,6 @@ const SplashScreen = () => {
           className="w-50 h-36 md:w-72 md:h-48"
         />
       </div>
-
-      {/* Company Name */}
-      <div className="text-center">
-        <h1
-          className={`text-4xl md:text-7xl font-bold text-white text-focus-in`}
-        >
-          NOVAGATE SOLUTIONS
-        </h1>
-      </div>
     </div>
 
   );

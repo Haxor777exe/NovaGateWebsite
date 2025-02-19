@@ -102,16 +102,6 @@ export default function Software() {
                 <p className="mb-6">{t('Software Description 1')}</p>
                 <p className="mb-6">{t('Software Description 2')}</p>
                 <p className="mb-6">{t('Software Description 3')}</p>
-                <div className="relative w-full pt-[56.25%] rounded-lg overflow-hidden border border-blue-500/20 shadow-lg shadow-blue-500/50">
-                    <iframe
-                        className="absolute top-0 left-0 w-full h-full"
-                        src="https://www.youtube.com/embed/0iRmHH0zxo4?si=1gztt9Kk7D6Q7cfM"
-                        title="Software development showcase"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                </div>
             </section>
 
             <section className="py-20">
