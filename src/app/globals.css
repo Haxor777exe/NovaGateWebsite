@@ -21,7 +21,6 @@ body {
   background-position: -1px -1px;
   z-index: 0;
   pointer-events: none;
-  animation: matrix 120s linear infinite;
 }
 
 @keyframes matrix {
@@ -31,6 +30,10 @@ body {
   100% {
     background-position: 56px 56px;
   }
+}
+
+.matrix-grid {
+  animation: matrix 20s linear infinite;
 }
 
 @keyframes scan {

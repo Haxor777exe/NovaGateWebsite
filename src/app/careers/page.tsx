@@ -36,7 +36,7 @@ const CareersPage = () => {
                             <div className="flex items-center justify-center">
                                 <TypeAnimation
                                     sequence={[
-                                        t('We are hiring')
+                                        '> ' +  t('We are hiring')
                                     ]}
                                     speed={50}
                                     cursor={false}
