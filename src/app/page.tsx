@@ -209,18 +209,17 @@ export default function Home() {
           <h1 className="text-3xl text-blue-400 font-mono mb-12 text-center">
             {t('Trusted by Leading Innovators')}
           </h1>
-
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
             {companies.map((company) => (
               <div
                 key={company.id}
-                className="group p-6 bg-black/40 rounded-lg border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:bg-blue-500/10"
+                className="group p-6 rounded-lg border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:bg-blue-500/10"
               >
                 <div className="relative h-12 w-full flex items-center justify-center">
                   <img
                     src={company.image}
                     alt={company.alt}
-                    className="h-full w-full object-contain grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                    className="h-full w-full object-contain grayscale brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
                     loading="lazy"
                   />
                 </div>
@@ -306,7 +305,7 @@ const companies = [
   },
   {
     id: 7,
-    image: "/images/cse.jpeg",
+    image: "https://cse.cbs.dk/wp-content/uploads/2024/06/cropped-Logo-1-1.png",
     alt: "Copenhagen School of Entrepreneurship"
   },
   {
