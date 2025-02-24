@@ -15,25 +15,37 @@ body {
   width: 100%;
   height: 100%;
   background-image:
-    linear-gradient(to right, rgba(24, 97, 194, 0.3) 1px, transparent 2px),
-    linear-gradient(to bottom, rgba(24, 97, 194, 0.3) 1px, transparent 2px);
-  background-size: 10px 10px;
-  background-position: -1px -1px;
+    radial-gradient(circle, rgba(24, 97, 194, 0.1) 2px, transparent 2px),
+    radial-gradient(circle, rgba(24, 97, 194, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px, 30px 30px;
   z-index: 0;
   pointer-events: none;
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.matrix-grid::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background-image:
+    linear-gradient(to right, rgba(24, 97, 194, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 97, 194, 0.2) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: rotateX(60deg) rotateZ(45deg);
+  animation: matrix 20s linear infinite;
 }
 
 @keyframes matrix {
   0% {
-    background-position: 0 0;
+    transform: rotateX(60deg) rotateZ(45deg) translateZ(0);
   }
   100% {
-    background-position: 56px 56px;
+    transform: rotateX(60deg) rotateZ(45deg) translateZ(100px);
   }
-}
-
-.matrix-grid {
-  animation: matrix 20s linear infinite;
 }
 
 @keyframes scan {
