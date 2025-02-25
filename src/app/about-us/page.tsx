@@ -60,7 +60,7 @@ export default function AboutPage() {
             <section className="relative pt-20 px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <TypeAnimation
-                        sequence={['> ' +  t('About the company')]}
+                        sequence={['> ' + t('About the company')]}
                         speed={50}
                         cursor={false}
                         className="text-4xl md:text-6xl font-bold text-blue-400"
@@ -127,7 +127,10 @@ export default function AboutPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {values.map((value) => (
-                            <div key={value.title} className="p-6 rounded-xl border border-blue-500/50 bg-[#0a0f1f] hover:bg-blue-500/10 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all">
+                            <div
+                                key={value.title}
+                                className="p-6 rounded-xl border border-sc-border/50 bg-[#0a0f1f] hover:bg-sc-overlay/10 shadow-lg shadow-sc-shadow/30 hover:shadow-sc-shadow/50 transition-all"
+                            >
                                 <h3 className="text-2xl text-white mb-4 drop-shadow-md">{value.title}</h3>
                                 <p className="text-gray-200">{value.description}</p>
                             </div>

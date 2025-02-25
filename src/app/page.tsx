@@ -32,28 +32,27 @@ const ProcessStep = ({
   title: string;
   description: string;
 }) => (
-  // On small screens stack the number and card, on md+ place them side-by-side.
   <div className="relative group flex flex-col md:flex-row items-stretch gap-8">
-    {/* Number container – on md+ it will be a fixed-width column matching the card’s height */}
+    {/* Number container */}
     <div className="flex md:w-32 items-center justify-center">
-      <span className="font-mono text-6xl md:text-8xl font-bold text-blue-500/50 transition-colors duration-300 group-hover:text-blue-500/75">
+      <span className="font-mono text-6xl md:text-8xl font-bold text-sc-border/50 transition-colors duration-300 group-hover:text-sc-border/75">
         {number}
       </span>
     </div>
 
     {/* Content card */}
-    <div className="flex-1 p-6 bg-blue-500/10 rounded-lg border border-blue-500/40 transition-all duration-300 group-hover:border-blue-500/60 relative overflow-hidden">
-      {/* Subtle grid pattern */}
+    <div className="flex-1 p-6 bg-sc-overlay/10 rounded-lg border border-sc-border/40 transition-all duration-300 group-hover:border-sc-border/60 relative overflow-hidden">
+      {/* Subtle grid pattern (static color) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-10" />
 
       <div className="flex items-start space-x-4 relative z-10">
         {/* Icon container */}
-        <div className="p-3 bg-blue-500/20 rounded-lg transition-all duration-300 group-hover:bg-blue-500/30">
-          <Icon className="w-6 h-6 text-blue-400 transition-colors group-hover:text-blue-300" />
+        <div className="p-3 bg-sc-overlay/20 rounded-lg transition-all duration-300 group-hover:bg-sc-overlay/30">
+          <Icon className="w-6 h-6 text-sc-icon transition-colors group-hover:text-white" />
         </div>
 
         <div className="flex-1">
-          <h3 className="font-mono text-blue-400 mb-2 text-lg transition-colors group-hover:text-blue-300">
+          <h3 className="font-mono text-sc-icon mb-2 text-lg transition-colors group-hover:text-white">
             {title}
           </h3>
           <p className="text-gray-300 text-sm font-light leading-relaxed">
@@ -70,15 +69,20 @@ export default function Home() {
   const t = useTranslations('common');
   const router = useRouter();
 
-  const ServiceCard = ({ icon: Icon, title, description, path }: { icon: any, title: string, description: string, path: string }) => (
-    <div className="relative p-6 rounded-lg border border-blue-500 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/60 transition-all duration-300 group">
-      <div className="absolute inset-0 bg-blue-500/10 rounded-lg group-hover:bg-blue-500/20 transition-all duration-300"></div>
+  const ServiceCard = ({ icon: Icon, title, description, path }: { 
+    icon: any, 
+    title: string, 
+    description: string, 
+    path: string 
+  }) => (
+    <div className="relative p-6 rounded-lg border border-sc-border shadow-lg sc-base hover:sc-hover transition-all duration-300 group">
+      <div className="absolute inset-0 bg-sc-overlay/10 rounded-lg group-hover:bg-sc-overlay/20 transition-all duration-300"></div>
       <div className="relative z-10">
-        <Icon className="w-12 h-12 text-blue-400 mb-4 group-hover:text-white transition-all duration-300" />
+        <Icon className="w-12 h-12 text-sc-icon mb-4 group-hover:text-white transition-all duration-300" />
         <h3 className="text-xl font-mono text-white mb-2">{title}</h3>
         <p className="text-gray-200">{description}</p>
         <button
-          className="mt-4 text-blue-400 hover:text-white font-mono text-sm transition-colors duration-300"
+          className="mt-4 text-sc-icon hover:text-white font-mono text-sm transition-colors duration-300"
           onClick={() => router.push(path)}
         >
           Learn More →
@@ -215,11 +219,11 @@ export default function Home() {
                 key={company.id}
                 className="group p-6 rounded-lg border border-blue-500/20 hover:border-blue-500/50 transition-all duration-300 hover:bg-blue-500/10"
               >
-                <div className="relative h-12 w-full flex items-center justify-center">
+                <div className="relative h-14 w-full flex items-center justify-center">
                   <img
                     src={company.image}
                     alt={company.alt}
-                    className="h-full w-full object-contain grayscale brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                    className={`${company.size || 'h-full'} ${company.maxWidth || 'max-w-full'} w-auto object-contain grayscale brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300`}
                     loading="lazy"
                   />
                 </div>
@@ -275,52 +279,67 @@ export default function Home() {
 const companies = [
   {
     id: 1,
-    image: "/images/hub55.jpeg",
-    alt: "Hub 55 ."
+    image: "/images/hub55.png",
+    alt: "Hub 55 .",
   },
   {
     id: 2,
-    image: "/images/gym.jpeg",
-    alt: "gym"
+    image: "/images/gym.png",
+    alt: "gym",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   },
   {
     id: 3,
-    image: "/images/balance.jpeg",
-    alt: "balance"
+    image: "/images/balance.png",
+    alt: "My True Bio",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   },
   {
     id: 4,
-    image: "/images/cbs.jpeg",
-    alt: "Copenhagen Business School"
+    image: "/images/cbs.png",
+    alt: "Copenhagen Business School",
   },
   {
     id: 5,
-    image: "/images/skylab.jpeg",
-    alt: "Dtu Skylab"
+    image: "/images/skylab.png",
+    alt: "Dtu Skylab",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   },
   {
     id: 6,
-    image: "/images/folques.jpeg",
-    alt: "Folques"
+    image: "/images/folques.png",
+    alt: "Folques",
+
   },
   {
     id: 7,
     image: "https://cse.cbs.dk/wp-content/uploads/2024/06/cropped-Logo-1-1.png",
-    alt: "Copenhagen School of Entrepreneurship"
+    alt: "Copenhagen School of Entrepreneurship",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   },
   {
     id: 8,
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzyfxIZRptC8cDXp3CnE7YnEEML49-QJvfuQ&s",
-    alt: "Denmark Technical University"
+    image: "https://www.tweedproject.eu/wp-content/uploads/2024/10/logo-dtu.webp",
+    alt: "Denmark Technical University",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   },
   {
     id: 9,
-    image: "/images/Soof.png",
-    alt: "Soof"
+    image: "/images/factoring.png",
+    alt: "Soof",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   },
   {
     id: 10,
-    image: "https://www.eu-startups.com/wp-content/uploads/2024/06/download-102.png",
-    alt: "Sens Vue"
+    image: "/images/vue.png",
+    alt: "Sens Vue",
+    size: "h-24",  // Direct height control
+    maxWidth: 'max-w-[180px]'
   }
 ];
