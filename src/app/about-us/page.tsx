@@ -46,7 +46,7 @@ export default function AboutPage() {
         },
         {
             name: "Rune josefsen",
-            title: "CSO",
+            title: "Chief Strategy Officer",
             linkedin: "https://www.linkedin.com/in/runejosefsen/",
             image: "https://i.ibb.co/ZnPSKSM/Rune-Profilbillede.jpg",
             bio: t('Process improvement and Chief Strategy Officer')
