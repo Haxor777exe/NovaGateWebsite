@@ -8,6 +8,7 @@ import CyberCursor from "@/components/cursor";
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import ClientWrapper from "@/components/clientwrapper";
+import Spline from '@splinetool/react-spline'
 
 const JetBrainsMono = localFont({
   src: "./fonts/JetBrainsMono-Regular.woff2",
@@ -35,17 +36,32 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={JetBrainsMono.variable}>
       <body>
-        <ClientWrapper>
-          <NextIntlClientProvider messages={messages}>
-            <div className="matrix-grid" />
-            <Navbar />
-            <div className="relative z-10">
-              {children}
-              <CyberCursor />
-            </div>
-            <Footer />
-          </NextIntlClientProvider>
-        </ClientWrapper>
+        {/* Spline container without negative z-index */}
+        <div className="fixed top-0 left-0 w-full h-full z-0">
+          <Spline
+            scene="https://prod.spline.design/JocryKqrF8NJvBrw/scene.splinecode"
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+
+
+        <div className="relative z-10">
+          <ClientWrapper>
+            <NextIntlClientProvider messages={messages}>
+              <div className="matrix-grid" />
+              <Navbar />
+
+              <div>
+                {children}
+                <CyberCursor />
+              </div>
+              <Footer />
+            </NextIntlClientProvider>
+          </ClientWrapper>
+        </div>
+        <div className="fixed bottom-4 right-4 bg-black text-white px-3 py-2 rounded-lg shadow-lg text-lg z-[9999]">
+          Made by <span className="font-bold">NovaGate</span>
+        </div>
       </body>
     </html>
   );

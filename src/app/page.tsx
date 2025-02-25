@@ -20,6 +20,10 @@ import {
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import path from "path";
+import dynamic from "next/dynamic";
+import Spline from "@splinetool/react-spline";
+
+//const Spline = dynamic(() => import("@splinetool/react-spline"), { ssr: false });
 
 const ProcessStep = ({
   number,
@@ -69,11 +73,11 @@ export default function Home() {
   const t = useTranslations('common');
   const router = useRouter();
 
-  const ServiceCard = ({ icon: Icon, title, description, path }: { 
-    icon: any, 
-    title: string, 
-    description: string, 
-    path: string 
+  const ServiceCard = ({ icon: Icon, title, description, path }: {
+    icon: any,
+    title: string,
+    description: string,
+    path: string
   }) => (
     <div className="relative p-6 rounded-lg border border-sc-border shadow-lg sc-base hover:sc-hover transition-all duration-300 group">
       <div className="absolute inset-0 bg-sc-overlay/10 rounded-lg group-hover:bg-sc-overlay/20 transition-all duration-300"></div>
