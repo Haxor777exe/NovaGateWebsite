@@ -20,6 +20,7 @@ export default function Navbar() {
 
     // Set the cookie with an expiration date (e.g., 1 year)
     document.cookie = `locale=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    
     router.refresh();
   };
 

@@ -39,7 +39,7 @@ export default async function RootLayout({
         {/* Spline container without negative z-index */}
         <div className="fixed top-0 left-0 w-full h-full z-0">
           <Spline
-            scene="https://prod.spline.design/JocryKqrF8NJvBrw/scene.splinecode"
+            scene="https://prod.spline.design/3ZSlT5qmDNmDn0Xv/scene.splinecode"
             style={{ width: '100%', height: '100%' }}
           />
         </div>
