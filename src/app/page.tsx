@@ -125,6 +125,7 @@ export default function Home() {
                   fontFamily: "'Orbitron', sans-serif",
                   textShadow: '0 0 10px rgba(96, 165, 250, 0.5)'
                 }}
+                key={t('AI, Automation & Software Made Simple')}
               />
             </div>
           </div>
@@ -298,7 +299,7 @@ const companies = [
     image: "/images/balance.png",
     alt: "My True Bio",
     size: "h-24",  // Direct height control
-    maxWidth: 'max-w-[180px]'
+    maxWidth: 'max-w-[150px]'
   },
   {
     id: 4,
@@ -310,7 +311,7 @@ const companies = [
     image: "/images/skylab.png",
     alt: "Dtu Skylab",
     size: "h-24",  // Direct height control
-    maxWidth: 'max-w-[180px]'
+    maxWidth: 'max-w-[170px]'
   },
   {
     id: 6,
@@ -337,7 +338,7 @@ const companies = [
     image: "/images/factoring.png",
     alt: "Soof",
     size: "h-24",  // Direct height control
-    maxWidth: 'max-w-[180px]'
+    maxWidth: 'max-w-[150px]'
   },
   {
     id: 10,

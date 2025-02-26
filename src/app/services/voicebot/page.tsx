@@ -78,6 +78,7 @@ export default function Voicebots() {
                                     fontFamily: "'Orbitron', sans-serif",
                                     textShadow: '0 0 10px rgba(96, 165, 250, 0.5)'
                                 }}
+                                key={t('AI Voicebots')}
                             />
                         </div>
                     </div>

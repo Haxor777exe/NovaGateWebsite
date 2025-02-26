@@ -40,6 +40,7 @@ export default function Automations() {
                                     fontFamily: "'Orbitron', sans-serif",
                                     textShadow: '0 0 10px rgba(96, 165, 250, 0.5)'
                                 }}
+                                key={t('Automations')}
                             />
                         </div>
                     </div>

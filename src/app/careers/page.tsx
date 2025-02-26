@@ -45,6 +45,7 @@ const CareersPage = () => {
                                         fontFamily: "'Orbitron', sans-serif",
                                         textShadow: '0 0 10px rgba(96, 165, 250, 0.5)'
                                     }}
+                                    key={t('We are hiring')}
                                 />
                             </div>
                         </div>
