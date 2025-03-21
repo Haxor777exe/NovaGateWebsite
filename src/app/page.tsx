@@ -242,19 +242,7 @@ export default function Home() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-mono text-blue-400 mb-12 text-center">Core Systems</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServiceCard
-              icon={Brain}
-              title={t('AI Voicebots')}
-              description={t('AI Content')}
-              path="/services/voicebot"
-            />
-            <ServiceCard
-              icon={MessageSquare}
-              title={t('AI Chatbots')}
-              description={t('AI Chat Content')}
-              path="/services/chatbot"
-            />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">            
             <ServiceCard
               icon={Bot}
               title={t('AI Agents')}
@@ -272,6 +260,18 @@ export default function Home() {
               title={t('Smart Software Development')}
               description={t('Smart Software Development Content')}
               path="/services/software"
+            />
+            <ServiceCard
+              icon={Brain}
+              title={t('AI Voicebots')}
+              description={t('AI Content')}
+              path="/services/voicebot"
+            />
+            <ServiceCard
+              icon={MessageSquare}
+              title={t('AI Chatbots')}
+              description={t('AI Chat Content')}
+              path="/services/chatbot"
             />
           </div>
         </div>
