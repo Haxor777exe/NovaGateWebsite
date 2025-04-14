@@ -46,9 +46,23 @@ export default function AboutPage() {
         },
         {
             name: "Rune josefsen",
-            title: "Chief Strategy Officer",
+            title: "Process Consulting & Ops Advisor",
             linkedin: "https://www.linkedin.com/in/runejosefsen/",
             image: "https://i.ibb.co/ZnPSKSM/Rune-Profilbillede.jpg",
+            bio: t('Process improvement and Chief Strategy Officer')
+        },
+        {
+            name: "Dovydas Vinickis",
+            title: "Partner & Head of AI Automation",
+            linkedin: "https://www.linkedin.com/in/dovydas-vinickis/",
+            image: "https://media.licdn.com/dms/image/v2/D4D03AQEoxpNGLRhydg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1714425186931?e=1750291200&v=beta&t=0eAICGlOAKIxFkwvWyNLgQ8HhAk7jBlP-GULeShZryE",
+            bio: t('Process improvement and Chief Strategy Officer')
+        },
+        {
+            name: "Manuel Serralha",
+            title: "Strategic AI & Ops Advisor",
+            linkedin: "https://www.linkedin.com/in/mserralha/",
+            image: "https://media.licdn.com/dms/image/v2/C4D03AQGYbVKFIo4e5Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1646423475707?e=1750291200&v=beta&t=TFkdUdJpr8xhcqpX5Z-T43KRTPY_FjZHIUsynzeRGA0",
             bio: t('Process improvement and Chief Strategy Officer')
         }
     ];
@@ -92,8 +106,37 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-4xl text-white mb-12 text-center drop-shadow-md">{t('Meet Our Founders')}</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {founders.map((founder) => (
+                    {/* First row with 4 founders */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                        {founders.slice(0, 4).map((founder) => (
+                            <div key={founder.name} className="group bg-[#0a0f1f] p-6 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
+                                <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/50">
+                                    <Image
+                                        src={founder.image}
+                                        alt={founder.name}
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                </div>
+                                <h3 className="text-xl text-white drop-shadow-md">{founder.name}</h3>
+                                <p className="text-blue-300 mb-2">{founder.title}</p>
+                                <a
+                                    href={founder.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition"
+                                >
+                                    <Linkedin size={20} />
+                                    <span>LinkedIn</span>
+                                </a>
+                                <p className="text-gray-200">{founder.bio}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Second row with 2 founders, centered */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                        {founders.slice(4, 6).map((founder) => (
                             <div key={founder.name} className="group bg-[#0a0f1f] p-6 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
                                 <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/50">
                                     <Image
