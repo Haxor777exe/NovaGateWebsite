@@ -56,14 +56,14 @@ export default function AboutPage() {
             title: "Partner & Head of AI Automation",
             linkedin: "https://www.linkedin.com/in/dovydas-vinickis/",
             image: "https://media.licdn.com/dms/image/v2/D4D03AQEoxpNGLRhydg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1714425186931?e=1750291200&v=beta&t=0eAICGlOAKIxFkwvWyNLgQ8HhAk7jBlP-GULeShZryE",
-            bio: t('Process improvement and Chief Strategy Officer')
+            bio: "Cost Optimization & Operational Efficiencies "
         },
         {
             name: "Manuel Serralha",
             title: "Strategic AI & Ops Advisor",
             linkedin: "https://www.linkedin.com/in/mserralha/",
             image: "https://media.licdn.com/dms/image/v2/C4D03AQGYbVKFIo4e5Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1646423475707?e=1750291200&v=beta&t=TFkdUdJpr8xhcqpX5Z-T43KRTPY_FjZHIUsynzeRGA0",
-            bio: t('Process improvement and Chief Strategy Officer')
+            bio: "Global Operations & AI Strategy Advisor "
         }
     ];
 
