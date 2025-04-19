@@ -64,6 +64,13 @@ export default function AboutPage() {
             linkedin: "https://www.linkedin.com/in/mserralha/",
             image: "https://media.licdn.com/dms/image/v2/C4D03AQGYbVKFIo4e5Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1646423475707?e=1750291200&v=beta&t=TFkdUdJpr8xhcqpX5Z-T43KRTPY_FjZHIUsynzeRGA0",
             bio: "Global Operations & AI Strategy Advisor "
+        },
+        {
+            name: "Martijn van Eck",
+            title: "Partner & Head of FinTech",
+            linkedin: "https://www.linkedin.com/in/martijnvaneck/",
+            image: "/images/Martijn.jpeg",
+            bio: "Venture Building, Innovation, A.I., Financial Services, Digital Assets"
         }
     ];
 
@@ -108,7 +115,7 @@ export default function AboutPage() {
 
                     {/* First row with 4 founders */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                        {founders.slice(0, 4).map((founder) => (
+                        {founders.map((founder) => (
                             <div key={founder.name} className="group bg-[#0a0f1f] p-6 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
                                 <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/50">
                                     <Image
@@ -134,33 +141,6 @@ export default function AboutPage() {
                         ))}
                     </div>
 
-                    {/* Second row with 2 founders, centered */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                        {founders.slice(4, 6).map((founder) => (
-                            <div key={founder.name} className="group bg-[#0a0f1f] p-6 rounded-xl border border-blue-500/50 hover:border-blue-400 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50">
-                                <div className="aspect-square w-full relative mb-4 rounded-lg overflow-hidden border border-blue-500/50">
-                                    <Image
-                                        src={founder.image}
-                                        alt={founder.name}
-                                        layout="fill"
-                                        objectFit="cover"
-                                    />
-                                </div>
-                                <h3 className="text-xl text-white drop-shadow-md">{founder.name}</h3>
-                                <p className="text-blue-300 mb-2">{founder.title}</p>
-                                <a
-                                    href={founder.linkedin}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition"
-                                >
-                                    <Linkedin size={20} />
-                                    <span>LinkedIn</span>
-                                </a>
-                                <p className="text-gray-200">{founder.bio}</p>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </section>
 
