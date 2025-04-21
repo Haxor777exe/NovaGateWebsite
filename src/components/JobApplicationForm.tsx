@@ -3,13 +3,15 @@
 import type React from "react"
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { X, UploadCloud, CheckCircle, AlertCircle, Github, Linkedin, Globe } from "lucide-react"
-import { createClient } from '@supabase/supabase-js'
+// Removed supabase client import as it wasn't used in the provided code for submission logic
+// import { createClient } from '@supabase/supabase-js'
 
 // --- Define Types ---
 interface JobApplicationFormProps {
   jobTitle: string
   jobDescription: string
   onClose: () => void
+  showGithubInput?: boolean // <-- Add new optional prop
 }
 
 interface FormDataState {
@@ -26,7 +28,12 @@ type FormErrors = Partial<Record<keyof FormDataState | "form", string>>
 type SubmissionStatus = "success" | "error" | null
 
 // --- Component ---
-const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDescription, onClose }) => {
+const JobApplicationForm: React.FC<JobApplicationFormProps> = ({
+  jobTitle,
+  jobDescription,
+  onClose,
+  showGithubInput = true, // <-- Destructure prop, default to true if not provided
+}) => {
   const [formData, setFormData] = useState<FormDataState>({
     name: "",
     email: "",
@@ -56,22 +63,26 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
 
     if (files && files.length > 0) {
       const file = files[0]
+      // Allow only PDF
       if (file.type === "application/pdf") {
         setFormData((prev) => ({ ...prev, [fileKey]: file }))
         if (errors[fileKey]) {
           setErrors((prev) => ({ ...prev, [fileKey]: undefined }))
         }
       } else {
+        // Reset if not PDF
         setErrors((prev) => ({ ...prev, [fileKey]: "Only PDF files are accepted." }))
-        e.target.value = ""
+        e.target.value = "" // Clear the file input visually
         setFormData((prev) => ({ ...prev, [fileKey]: null }))
       }
     } else {
+      // Handle case where file selection is cancelled
       setFormData((prev) => ({ ...prev, [fileKey]: null }))
     }
-    setSubmissionStatus(null)
+    setSubmissionStatus(null) // Reset submission status on file change
   }
 
+  // --- Validation ---
   const validateForm = (): boolean => {
     const tempErrors: FormErrors = {}
     if (!formData.name.trim()) tempErrors.name = "Name is required."
@@ -81,30 +92,32 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
       tempErrors.email = "Email address is invalid."
     }
     if (!formData.cv) tempErrors.cv = "CV (PDF) is required."
-    if (formData.github && !/^https?:\/\/.+/.test(formData.github)) {
+
+    // Only validate GitHub if it's shown AND has a value
+    if (showGithubInput && formData.github && !/^https?:\/\/.+/.test(formData.github)) {
       tempErrors.github = "Please enter a valid URL starting with http(s)://"
     }
+
     if (formData.linkedin && !/^https?:\/\/.+/.test(formData.linkedin)) {
       tempErrors.linkedin = "Please enter a valid URL starting with http(s)://"
     }
     if (formData.website && !/^https?:\/\/.+/.test(formData.website)) {
       tempErrors.website = "Please enter a valid URL starting with http(s)://"
     }
-    if (formData.coverLetter && formData.coverLetter.type !== "application/pdf") {
-      tempErrors.coverLetter = "Only PDF files are accepted for Cover Letter."
-      setFormData((prev) => ({ ...prev, coverLetter: null }))
-    }
+
+    // Note: Validation for coverLetter PDF type is handled in handleFileChange
 
     setErrors(tempErrors)
     return Object.keys(tempErrors).length === 0
   }
 
+  // --- Form Submission ---
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmissionStatus(null)
-    setErrors({})
+    setSubmissionStatus(null) // Reset status on new submission attempt
+    setErrors({}) // Clear previous errors
 
-    if (!validateForm()) return
+    if (!validateForm()) return // Stop if validation fails
 
     setIsSubmitting(true)
 
@@ -113,32 +126,56 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
       data.append("name", formData.name)
       data.append("email", formData.email)
       data.append("jobTitle", jobTitle)
-      data.append("jobDescription", jobDescription)
-      data.append("github", formData.github)
-      data.append("linkedin", formData.linkedin)
-      data.append("website", formData.website)
+      data.append("jobDescription", jobDescription) // Consider if this is needed in the form data itself
+      // Only include github if it was shown and has a value
+      if (showGithubInput && formData.github) {
+         data.append("github", formData.github)
+      }
+      // Always include linkedin/website if provided (they are always shown)
+      if (formData.linkedin) data.append("linkedin", formData.linkedin)
+      if (formData.website) data.append("website", formData.website)
+
+      // CV is required, so it should always exist at this point if validation passed
       if (formData.cv) data.append("cv", formData.cv)
+      // Cover Letter is optional
       if (formData.coverLetter) data.append("coverLetter", formData.coverLetter)
 
+      // Example: Replace with your actual API endpoint call
       const res = await fetch("/api/application", {
         method: "POST",
         body: data,
       })
 
-      const result = await res.json()
+      if (!res.ok) {
+        // Attempt to read error message from response
+        let errorMsg = "Submission failed. Server responded with an error."
+        try {
+          const errorResult = await res.json();
+          errorMsg = errorResult.message || errorMsg;
+        } catch (jsonError) {
+           // Ignore if response is not JSON
+        }
+        throw new Error(errorMsg)
+      }
+
+      const result = await res.json(); // Assuming success returns JSON
+      console.log("Submission successful:", result);
 
       setSubmissionStatus("success")
-      setTimeout(onClose, 2500)
-    } catch (error) {
-      console.error("Error during submission:", JSON.stringify(error, null, 2)) // <- shows detailed info
-      setErrors({ form: "An error occurred while submitting. Please try again." })
+      // Reset form state after successful submission? Optional.
+      // setFormData({ name: "", email: "", cv: null, coverLetter: null, github: "", linkedin: "", website: "" });
+      setTimeout(onClose, 2500) // Close modal after a delay
+
+    } catch (error: any) {
+      console.error("Error during submission:", error)
+      setErrors({ form: error.message || "An unexpected error occurred while submitting. Please try again." })
       setSubmissionStatus("error")
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  // Helper to render file input with better styling
+  // --- Helper to render file input ---
   const renderFileInput = (id: "cv" | "coverLetter", label: string, required: boolean) => {
     const file = formData[id]
     const error = errors[id]
@@ -151,6 +188,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
           {!required && <span className="text-blue-200/60 text-xs ml-1">(Optional)</span>}
         </label>
         <div className={`relative group overflow-hidden rounded-lg ${error ? "ring-2 ring-red-500" : ""}`}>
+          {/* Input container styling */}
           <div
             className={`flex items-center w-full px-4 py-3 ${isPrimary ? "bg-black/60" : "bg-black/70"} border ${error ? "border-red-500" : "border-blue-500/50"} rounded-lg transition-all duration-200 group-hover:border-blue-400/90 group-focus-within:ring-2 group-focus-within:ring-blue-500/50 backdrop-blur-sm`}
           >
@@ -166,19 +204,20 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
             </div>
             <label
               htmlFor={id}
-              className={`ml-3 px-3 py-1.5 rounded-md text-xs font-medium ${isPrimary ? "bg-blue-700 hover:bg-blue-600" : "bg-blue-800 hover:bg-blue-700"} text-black font-bold transition-colors cursor-pointer`}
+              className={`ml-3 px-3 py-1.5 rounded-md text-xs font-medium ${isPrimary ? "bg-blue-700 hover:bg-blue-600" : "bg-blue-800 hover:bg-blue-700"} text-white font-bold transition-colors cursor-pointer`} // Changed text color for better contrast
             >
               {file ? "Change" : "Browse"}
             </label>
           </div>
+          {/* Hidden actual file input */}
           <input
             type="file"
             id={id}
             name={id}
-            accept=".pdf"
+            accept=".pdf" // Only accept PDF
             onChange={handleFileChange}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-            required={required}
+            // No 'required' attribute here; validation is handled in JS
             disabled={isSubmitting}
           />
         </div>
@@ -187,9 +226,10 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
     )
   }
 
+  // --- Render Component ---
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 transition-opacity duration-300 ease-in-out overflow-hidden">
-      {/* Matrix-like falling code effect */}
+      {/* Matrix effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-0 left-0 w-full h-full">
           {Array.from({ length: 10 }).map((_, i) => (
@@ -209,8 +249,9 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
         </div>
       </div>
 
+      {/* Form container */}
       <div className="relative w-full max-w-2xl bg-black/70 border border-blue-600/30 rounded-xl shadow-2xl shadow-blue-900/30 max-h-[90vh] overflow-y-auto backdrop-blur-md">
-        {/* Digital noise overlay */}
+        {/* Noise overlay */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxmaWx0ZXIgaWQ9Im4iPjxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjgiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuMDMiLz48L3N2Zz4=')] opacity-30 mix-blend-overlay pointer-events-none rounded-xl"></div>
 
         {/* Close button */}
@@ -225,9 +266,8 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
 
         {/* Form Content */}
         <div className="p-8">
-          {/* Header with gradient background */}
+          {/* Header */}
           <div className="relative -mx-8 -mt-8 px-8 pt-12 pb-8 mb-6 bg-gradient-to-r from-black via-blue-950 to-black border-b border-blue-500/30 rounded-t-xl shadow-md overflow-hidden">
-            {/* Digital scan line effect */}
             <div className="absolute inset-0 pointer-events-none">
               <div className="h-px bg-blue-400/20 w-full absolute animate-scanline"></div>
             </div>
@@ -235,6 +275,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
             <p className="text-blue-300 text-sm leading-relaxed max-w-xl">{jobDescription}</p>
           </div>
 
+          {/* Section 1 Title */}
           <div className="mb-8">
             <h3 className="text-xl font-semibold text-blue-400 flex items-center">
               <span className="inline-block w-8 h-8 rounded-full bg-blue-900 text-blue-300 flex items-center justify-center mr-3 text-sm border border-blue-400/50">
@@ -245,7 +286,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name & Email - Two column layout on larger screens */}
+            {/* Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name */}
               <div>
@@ -261,7 +302,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  required
+                  required // Keep basic HTML5 required for accessibility/UX hints
                   className={`w-full px-4 py-3 bg-black/60 border ${errors.name ? "border-red-500" : "border-blue-700/60"} rounded-lg text-blue-300 placeholder-blue-700 focus:outline-none focus:ring-2 ${errors.name ? "focus:ring-red-500" : "focus:ring-blue-500/50"} focus:border-transparent transition-all duration-200 backdrop-blur-sm`}
                   placeholder="e.g., Neo Anderson"
                   disabled={isSubmitting}
@@ -294,10 +335,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
 
             {/* CV & Cover Letter */}
             <div className="space-y-6 pt-2">
-              {/* CV (PDF) */}
               {renderFileInput("cv", "Curriculum Vitae (CV)", true)}
-
-              {/* Cover Letter (PDF) - Optional */}
               {renderFileInput("coverLetter", "Cover Letter", false)}
             </div>
 
@@ -310,27 +348,29 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
                 Professional Links
               </h3>
               <div className="space-y-6">
-                {/* GitHub Link */}
-                <div>
-                  <label
-                    htmlFor="github"
-                    className={`block text-sm font-medium mb-1.5 flex items-center ${errors.github ? "text-red-400" : "text-blue-300"}`}
-                  >
-                    <Github size={16} className="mr-2 text-blue-500" />
-                    GitHub Profile
-                  </label>
-                  <input
-                    type="url"
-                    id="github"
-                    name="github"
-                    value={formData.github}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-black/60 border ${errors.github ? "border-red-500" : "border-blue-700/60"} rounded-lg text-blue-300 placeholder-blue-700 focus:outline-none focus:ring-2 ${errors.github ? "focus:ring-red-500" : "focus:ring-blue-500/50"} focus:border-transparent transition-all duration-200 backdrop-blur-sm`}
-                    placeholder="https://github.com/..."
-                    disabled={isSubmitting}
-                  />
-                  {errors.github && <p className="text-red-400 text-xs mt-1.5">{errors.github}</p>}
-                </div>
+                {/* GitHub Link - Conditional Rendering */}
+                {showGithubInput && ( // <-- Use the prop here
+                  <div>
+                    <label
+                      htmlFor="github"
+                      className={`block text-sm font-medium mb-1.5 flex items-center ${errors.github ? "text-red-400" : "text-blue-300"}`}
+                    >
+                      <Github size={16} className="mr-2 text-blue-500" />
+                      GitHub Profile <span className="text-blue-400/60 text-xs ml-1">(Optional)</span>
+                    </label>
+                    <input
+                      type="url"
+                      id="github"
+                      name="github"
+                      value={formData.github}
+                      onChange={handleInputChange}
+                      className={`w-full px-4 py-3 bg-black/60 border ${errors.github ? "border-red-500" : "border-blue-700/60"} rounded-lg text-blue-300 placeholder-blue-700 focus:outline-none focus:ring-2 ${errors.github ? "focus:ring-red-500" : "focus:ring-blue-500/50"} focus:border-transparent transition-all duration-200 backdrop-blur-sm`}
+                      placeholder="https://github.com/..."
+                      disabled={isSubmitting}
+                    />
+                    {errors.github && <p className="text-red-400 text-xs mt-1.5">{errors.github}</p>}
+                  </div>
+                )}
 
                 {/* LinkedIn Link */}
                 <div>
@@ -339,7 +379,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
                     className={`block text-sm font-medium mb-1.5 flex items-center ${errors.linkedin ? "text-red-400" : "text-blue-300"}`}
                   >
                     <Linkedin size={16} className="mr-2 text-blue-500" />
-                    LinkedIn Profile
+                    LinkedIn Profile <span className="text-blue-400/60 text-xs ml-1">(Optional)</span>
                   </label>
                   <input
                     type="url"
@@ -354,7 +394,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
                   {errors.linkedin && <p className="text-red-400 text-xs mt-1.5">{errors.linkedin}</p>}
                 </div>
 
-                {/* Personal Website/Blog - Optional */}
+                {/* Personal Website/Blog */}
                 <div>
                   <label
                     htmlFor="website"
@@ -383,7 +423,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
               {submissionStatus === "success" && (
                 <div className="flex items-center justify-center gap-2 text-blue-400 text-sm p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg backdrop-blur-sm">
                   <CheckCircle size={18} />
-                  <span>Application submitted successfully! Redirecting soon...</span>
+                  <span>Application submitted successfully! Closing form...</span>
                 </div>
               )}
               {submissionStatus === "error" && (
@@ -404,34 +444,18 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
                   : "bg-blue-500 hover:bg-blue-400 shadow-blue-500/20 font-bold"
                   }`}
               >
+                {/* Button Content Logic */}
                 {isSubmitting ? (
                   <>
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-black"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                     PROCESSING...
                   </>
                 ) : submissionStatus === "success" ? (
                   <>
-                    {" "}
-                    <CheckCircle className="-ml-1 mr-2 h-5 w-5" /> CONNECTED{" "}
+                    <CheckCircle className="-ml-1 mr-2 h-5 w-5" /> SUBMITTED
                   </>
                 ) : (
                   "SUBMIT APPLICATION"
@@ -440,7 +464,6 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
             </div>
           </form>
         </div>
-
       </div>
     </div>
   )

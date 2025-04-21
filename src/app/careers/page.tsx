@@ -128,7 +128,6 @@ const CareersPage: React.FC = () => { // Standard functional component type
                                             </button>
                                         </a>
                                          <a
-                                            href="https://cal.com/david.nabeiro/novagate.30min"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             title="Schedule a Call (Option 2)"
@@ -151,7 +150,8 @@ const CareersPage: React.FC = () => { // Standard functional component type
                 <JobApplicationForm
                     jobTitle={applyingToJob.title}
                     jobDescription={applyingToJob.description}
-                    onClose={handleCloseForm} // Pass the correctly typed close handler
+                    onClose={handleCloseForm}
+                    showGithubInput={!applyingToJob.title.toLowerCase().includes('marketing')}
                 />
             )}
         </div>
