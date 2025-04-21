@@ -9,6 +9,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import ClientWrapper from "@/components/clientwrapper";
 import Spline from '@splinetool/react-spline'
+import { Analytics } from "@vercel/analytics/react"
 
 const JetBrainsMono = localFont({
   src: "./fonts/JetBrainsMono-Regular.woff2",
@@ -36,6 +37,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={JetBrainsMono.variable}>
       <body>
+        <Analytics />
         {/* Spline container without negative z-index */}
         <div className="fixed top-0 left-0 w-full h-full z-0">
           <Spline
