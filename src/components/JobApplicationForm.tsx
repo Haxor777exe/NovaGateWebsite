@@ -3,7 +3,12 @@
 import type React from "react"
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { X, UploadCloud, CheckCircle, AlertCircle, Github, Linkedin, Globe } from "lucide-react"
+import { createClient } from '@supabase/supabase-js'
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 // --- Define Types ---
 interface JobApplicationFormProps {
   jobTitle: string
@@ -103,35 +108,57 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
     setSubmissionStatus(null)
     setErrors({})
 
-    if (!validateForm()) {
-      const firstErrorField = Object.keys(errors)[0]
-      const element = document.getElementById(firstErrorField)
-      element?.focus()
-      return
-    }
+    if (!validateForm()) return
 
     setIsSubmitting(true)
 
-    const dataToSubmit = new FormData()
-    dataToSubmit.append("jobTitle", jobTitle)
-    Object.entries(formData).forEach(([key, value]) => {
-      if (value !== null && value !== "") {
-        dataToSubmit.append(key, value)
-      }
-    })
-
-    console.log("Submitting application for:", jobTitle)
-
     try {
-      // ** TODO: Replace with actual API call **
-      await new Promise((resolve) => setTimeout(resolve, 1500)) // Simulate delay
-      console.log("Simulated submission successful!")
+      // --- Upload CV ---
+      const cvPath = `cv/${Date.now()}_${formData.cv!.name}`
+      const { data: cvUpload, error: cvError } = await supabase
+        .storage
+        .from('files')
+        .upload(cvPath, formData.cv!)
+
+      if (cvError) throw cvError
+
+      const cvURL = supabase.storage.from('applications').getPublicUrl(cvPath).data.publicUrl
+
+      // --- Upload Cover Letter (Optional) ---
+      let coverLetterURL: string | null = null
+      if (formData.coverLetter) {
+        const clPath = `cover_letters/${Date.now()}_${formData.coverLetter.name}`
+        const { data: clUpload, error: clError } = await supabase
+          .storage
+          .from('files')
+          .upload(clPath, formData.coverLetter)
+
+        if (clError) throw clError
+
+        coverLetterURL = supabase.storage.from('applications').getPublicUrl(clPath).data.publicUrl
+      }
+
+      // --- Insert Application Data into DB ---
+      const { error: insertError } = await supabase.from('job_applications').insert({
+        job_title: jobTitle,
+        job_description: jobDescription,
+        name: formData.name,
+        email: formData.email,
+        github: formData.github,
+        linkedin: formData.linkedin,
+        website: formData.website,
+        cv: cvURL,
+        cover_letter: coverLetterURL,
+      })
+
+      if (insertError) throw insertError
+
       setSubmissionStatus("success")
-      setTimeout(onClose, 2500) // Close after showing success message
+      setTimeout(onClose, 2500)
     } catch (error) {
-      console.error("Submission failed:", error)
+      console.error("Error during submission:", JSON.stringify(error, null, 2)) // <- shows detailed info
+      setErrors({ form: "An error occurred while submitting. Please try again." })
       setSubmissionStatus("error")
-      setErrors({ form: "An error occurred during submission. Please try again." })
     } finally {
       setIsSubmitting(false)
     }
@@ -192,8 +219,8 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-0 left-0 w-full h-full">
           {Array.from({ length: 10 }).map((_, i) => (
-            <div 
-              key={i} 
+            <div
+              key={i}
               className="absolute text-blue-500 text-xs animate-fall whitespace-nowrap"
               style={{
                 left: `${Math.random() * 100}%`,
@@ -398,11 +425,10 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
               <button
                 type="submit"
                 disabled={isSubmitting || submissionStatus === "success"}
-                className={`w-full flex justify-center items-center px-6 py-3.5 rounded-lg shadow-lg text-base font-medium text-black transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-900 focus:ring-blue-400 border border-blue-400/50 ${
-                  isSubmitting || submissionStatus === "success"
+                className={`w-full flex justify-center items-center px-6 py-3.5 rounded-lg shadow-lg text-base font-medium text-black transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-900 focus:ring-blue-400 border border-blue-400/50 ${isSubmitting || submissionStatus === "success"
                     ? "bg-blue-700 cursor-not-allowed"
                     : "bg-blue-500 hover:bg-blue-400 shadow-blue-500/20 font-bold"
-                }`}
+                  }`}
               >
                 {isSubmitting ? (
                   <>
@@ -440,7 +466,7 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
             </div>
           </form>
         </div>
-        
+
       </div>
     </div>
   )

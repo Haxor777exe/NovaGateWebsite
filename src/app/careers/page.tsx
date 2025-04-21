@@ -34,7 +34,7 @@ const CareersPage: React.FC = () => { // Standard functional component type
             id: "swe-01",
             title: "Software Developer",
             department: "Software Development",
-            description: "Join our team to build scalable, high-performance web applications with React, Node.js, and TypeScript, driving innovation in AI-powered solutions.",
+            description: "Join our team to build scalable, high-performance web applications and apps, driving innovation in AI-powered solutions.",
             location: "Remote",
             type: "Full-time"
         },
