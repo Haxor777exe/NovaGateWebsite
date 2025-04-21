@@ -5,10 +5,6 @@ import { useState, type ChangeEvent, type FormEvent } from "react"
 import { X, UploadCloud, CheckCircle, AlertCircle, Github, Linkedin, Globe } from "lucide-react"
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
 // --- Define Types ---
 interface JobApplicationFormProps {
   jobTitle: string
@@ -113,45 +109,23 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
     setIsSubmitting(true)
 
     try {
-      // --- Upload CV ---
-      const cvPath = `cv/${Date.now()}_${formData.cv!.name}`
-      const { data: cvUpload, error: cvError } = await supabase
-        .storage
-        .from('files')
-        .upload(cvPath, formData.cv!)
+      const data = new FormData()
+      data.append("name", formData.name)
+      data.append("email", formData.email)
+      data.append("jobTitle", jobTitle)
+      data.append("jobDescription", jobDescription)
+      data.append("github", formData.github)
+      data.append("linkedin", formData.linkedin)
+      data.append("website", formData.website)
+      if (formData.cv) data.append("cv", formData.cv)
+      if (formData.coverLetter) data.append("coverLetter", formData.coverLetter)
 
-      if (cvError) throw cvError
-
-      const cvURL = supabase.storage.from('applications').getPublicUrl(cvPath).data.publicUrl
-
-      // --- Upload Cover Letter (Optional) ---
-      let coverLetterURL: string | null = null
-      if (formData.coverLetter) {
-        const clPath = `cover_letters/${Date.now()}_${formData.coverLetter.name}`
-        const { data: clUpload, error: clError } = await supabase
-          .storage
-          .from('files')
-          .upload(clPath, formData.coverLetter)
-
-        if (clError) throw clError
-
-        coverLetterURL = supabase.storage.from('applications').getPublicUrl(clPath).data.publicUrl
-      }
-
-      // --- Insert Application Data into DB ---
-      const { error: insertError } = await supabase.from('job_applications').insert({
-        job_title: jobTitle,
-        job_description: jobDescription,
-        name: formData.name,
-        email: formData.email,
-        github: formData.github,
-        linkedin: formData.linkedin,
-        website: formData.website,
-        cv: cvURL,
-        cover_letter: coverLetterURL,
+      const res = await fetch("/api/application", {
+        method: "POST",
+        body: data,
       })
 
-      if (insertError) throw insertError
+      const result = await res.json()
 
       setSubmissionStatus("success")
       setTimeout(onClose, 2500)
@@ -426,8 +400,8 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({ jobTitle, jobDe
                 type="submit"
                 disabled={isSubmitting || submissionStatus === "success"}
                 className={`w-full flex justify-center items-center px-6 py-3.5 rounded-lg shadow-lg text-base font-medium text-black transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-900 focus:ring-blue-400 border border-blue-400/50 ${isSubmitting || submissionStatus === "success"
-                    ? "bg-blue-700 cursor-not-allowed"
-                    : "bg-blue-500 hover:bg-blue-400 shadow-blue-500/20 font-bold"
+                  ? "bg-blue-700 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-400 shadow-blue-500/20 font-bold"
                   }`}
               >
                 {isSubmitting ? (
