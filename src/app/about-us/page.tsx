@@ -27,21 +27,21 @@ export default function AboutPage() {
             name: "Manuel Imanse",
             title: "Co-Founder & CEO",
             linkedin: "https://www.linkedin.com/in/manuel-imanse/",
-            image: "https://media.licdn.com/dms/image/v2/D4D03AQHgia5-7p51Fg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731678368384?e=1744848000&v=beta&t=1FJGTqd9_vg0rjBKqeytgxjNmYQ0RH_NtcTKSszHaKA",
+            image: "/images/manuel.png",
             bio: t('Business Consultant and Marketing Strategist')
         },
         {
             name: "Nichita Railean",
             title: "Co-Founder and CTO",
             linkedin: "https://www.linkedin.com/in/nichita-railean-a78b4a206/",
-            image: "https://media.licdn.com/dms/image/v2/D4D03AQF-Q8RhIVHzvw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731154186348?e=1744848000&v=beta&t=Plr7bv3bCBoaxN-WtUZXRTasLfHUJJUkyyPbZiZwG-I",
+            image: "/images/nick.png",
             bio: t('Software Engineer and AI Developer')
         },
         {
             name: "David Nabeiro",
             title: "Founder & COO",
             linkedin: "https://www.linkedin.com/in/david-nabeiro/",
-            image: "https://media.licdn.com/dms/image/v2/D5603AQFSthgk-1ts9g/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712600959823?e=1744848000&v=beta&t=QlYj0FR6XEDTo-_F_xTdUgKbF-71x2dN-1QtHuVRjH0",
+            image: "/images/david.png",
             bio: t('No-code Developer and Systems Engineer')
         },
         {
