@@ -28,24 +28,24 @@ export default function AboutPage() {
             title: "Co-Founder & CEO",
             linkedin: "https://www.linkedin.com/in/manuel-imanse/",
             image: "/images/manuel.png",
-            bio: t('Business Consultant and Marketing Strategist')
+            bio: "Dutch Business Mastermind"
         },
         {
             name: "Nichita Railean",
             title: "Co-Founder and CTO",
             linkedin: "https://www.linkedin.com/in/nichita-railean-a78b4a206/",
             image: "/images/nick.png",
-            bio: t('Software Engineer and AI Developer')
+            bio: "Moldovan Programming Maniac"
         },
         {
             name: "David Nabeiro",
             title: "Founder & COO",
             linkedin: "https://www.linkedin.com/in/david-nabeiro/",
             image: "/images/david.png",
-            bio: t('No-code Developer and Systems Engineer')
+            bio: "Portuguese AI Engineer"
         },
         {
-            name: "Rune josefsen",
+            name: "Rune Josefsen",
             title: "Process Consulting & Ops Advisor",
             linkedin: "https://www.linkedin.com/in/runejosefsen/",
             image: "https://i.ibb.co/ZnPSKSM/Rune-Profilbillede.jpg",
@@ -53,7 +53,7 @@ export default function AboutPage() {
         },
         {
             name: "Dovydas Vinickis",
-            title: "Partner & Head of AI Automation",
+            title: "Lithuanian AI Automation Specialist",
             linkedin: "https://www.linkedin.com/in/dovydas-vinickis/",
             image: "https://media.licdn.com/dms/image/v2/D4D03AQEoxpNGLRhydg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1714425186931?e=1750291200&v=beta&t=0eAICGlOAKIxFkwvWyNLgQ8HhAk7jBlP-GULeShZryE",
             bio: "Cost Optimization & Operational Efficiencies "
