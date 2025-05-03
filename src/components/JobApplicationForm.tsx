@@ -105,6 +105,11 @@ const JobApplicationForm: React.FC<JobApplicationFormProps> = ({
       tempErrors.website = "Please enter a valid URL starting with http(s)://"
     }
 
+    if (!formData.github && !formData.linkedin) {
+  tempErrors.github = "Either GitHub or LinkedIn URL is required."
+  tempErrors.linkedin = "Either GitHub or LinkedIn URL is required."
+}
+
     // Note: Validation for coverLetter PDF type is handled in handleFileChange
 
     setErrors(tempErrors)
