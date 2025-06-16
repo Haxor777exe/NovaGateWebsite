@@ -28,28 +28,35 @@ export default function AboutPage() {
             title: "Co-Founder & CEO",
             linkedin: "https://www.linkedin.com/in/manuel-imanse/",
             image: "/images/manuel.png",
-            bio: "Dutch Business Mastermind"
+            bio: "Business strategist with a background in consulting"
         },
         {
             name: "Nichita Railean",
             title: "Co-Founder and CTO",
             linkedin: "https://www.linkedin.com/in/nichita-railean-a78b4a206/",
             image: "/images/nick.png",
-            bio: "Moldovan Programming Maniac"
+            bio: "Full-stack engineer leading tech development"
         },
         {
             name: "David Nabeiro",
             title: "Founder & COO",
             linkedin: "https://www.linkedin.com/in/david-nabeiro/",
             image: "/images/david.png",
-            bio: "Portuguese AI Engineer"
+            bio: "AI and Process Improvement"
+        },
+        {
+            name: "João Pedro Gomes",
+            title: "Head of Marketing   ",
+            linkedin: "https://www.linkedin.com/in/joão-pedro-gomes-124b77361/",
+            image: "https://media.licdn.com/dms/image/v2/D4D03AQEv2BuJlxcWdw/profile-displayphoto-shrink_800_800/B4DZZfEpPeG0Ac-/0/1745351775585?e=1755734400&v=beta&t=cJgXcMNsKFTELaqYUDnEX-AOMUayclA9brO0L8aRsr0",
+            bio: "Sell Ideas, create demand, give solutions."
         },
         {
             name: "Rune Josefsen",
             title: "Process Consulting & Ops Advisor",
             linkedin: "https://www.linkedin.com/in/runejosefsen/",
             image: "https://i.ibb.co/ZnPSKSM/Rune-Profilbillede.jpg",
-            bio: t('Process improvement and Chief Strategy Officer')
+            bio: "Advisor in operations strategy and process improvement."
         },
         {
             name: "Dovydas Vinickis",
@@ -63,7 +70,7 @@ export default function AboutPage() {
             title: "Strategic AI & Ops Advisor",
             linkedin: "https://www.linkedin.com/in/mserralha/",
             image: "https://media.licdn.com/dms/image/v2/C4D03AQGYbVKFIo4e5Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1646423475707?e=1750291200&v=beta&t=TFkdUdJpr8xhcqpX5Z-T43KRTPY_FjZHIUsynzeRGA0",
-            bio: "Global Operations & AI Strategy Advisor "
+            bio: "Advisor in AI strategy and global operations."
         },
         {
             name: "Martijn van Eck",
@@ -71,7 +78,7 @@ export default function AboutPage() {
             linkedin: "https://www.linkedin.com/in/martijnvaneck/",
             image: "/images/Martijn.jpeg",
             bio: "Venture Building, Innovation, A.I., Financial Services, Digital Assets"
-        }
+        },
     ];
 
 

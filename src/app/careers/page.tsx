@@ -123,17 +123,7 @@ const CareersPage: React.FC = () => { // Standard functional component type
                                              title="Schedule a Call (Option 1)"
                                         >
                                             <button className="flex items-center px-4 py-2 bg-red-500/30 text-red-300 rounded-full hover:bg-red-500/50 transition-all" aria-label="Schedule call option 1">
-                                                <Pill className="w-5 h-5 mr-2"/>
                                                 Apply
-                                            </button>
-                                        </a>
-                                         <a
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            title="Schedule a Call (Option 2)"
-                                        >
-                                            <button className="flex items-center px-4 py-2 border border-sc-border/50 text-sc-icon rounded-full hover:border-sc-border/60 hover:bg-sc-overlay/20 transition-all" aria-label="Schedule call option 2">
-                                                <Pill className="w-5 h-5" />
                                             </button>
                                         </a>
                                     </div>
